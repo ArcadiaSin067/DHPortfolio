@@ -31,6 +31,28 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="Img/favicon.png">
 
+    <style>
+        .overlay {
+            position: absolute;
+            top: 0;
+            background: rgb(0, 0, 0);
+            background: rgba(0, 0, 0, 0.67); /* Black see-through */
+            color: #f1f1f1;
+            width: 92%;
+            transition: .5s ease;
+            opacity: 0;
+            color: white;
+            font-size: 20px;
+            padding: 25px;
+            text-align: center;
+        }
+        .portfolio-thumbnail:hover .overlay {
+            opacity: 1;
+        }
+    </style>
+
+
+
     <!-- =======================================================
       Theme Name: Folio
       Theme URL: https://bootstrapmade.com/folio-bootstrap-portfolio-template/
@@ -103,7 +125,6 @@
                         <p class="separator">Raised with computers, I found a passion for all things digital at an early age. Over the years I've delved into all the different aspects of coding, digital art, & web production.</p>
 
                     </div>
-
                 </div>
             </div>
         </div>
@@ -119,7 +140,7 @@
 
                     <i class="ion-ios-browsers-outline"></i>
                     <span>UI/UX DESIGN</span>
-                    <p class="separator">To an English person, it will seem like simplified English,told me what </p>
+                    <p class="separator">Creating a memorable experience for the user with custom graphics and effects.</p>
 
                 </div>
 
@@ -127,7 +148,7 @@
 
                     <i class="ion-ios-lightbulb-outline"></i>
                     <span>BRAND IDENTITY</span>
-                    <p class="separator">To an English person, it will seem like simplified English,told me what </p>
+                    <p class="separator">Helping the client find their voice by assisting in concept and artwork.</p>
 
                 </div>
 
@@ -135,7 +156,7 @@
 
                     <i class="ion-ios-color-wand-outline"></i>
                     <span>WEB DESIGN</span>
-                    <p class="separator">To an English person, it will seem like simplified English,told me what </p>
+                    <p class="separator">Providing a stylistic home base for the customer to interact with the client.</p>
 
                 </div>
 
@@ -143,7 +164,7 @@
 
                     <i class="ion-social-android-outline"></i>
                     <span>MOBILE APPS</span>
-                    <p class="separator">To an English person, it will seem like simplified English,told me what </p>
+                    <p class="separator">Bringing the client to a mobile platform via custom apps and services.</p>
 
                 </div>
 
@@ -151,15 +172,7 @@
 
                     <i class="ion-ios-analytics-outline"></i>
                     <span>Analytics</span>
-                    <p class="separator">To an English person, it will seem like simplified English,told me what </p>
-
-                </div>
-
-                <div class="services-block">
-
-                    <i class="ion-ios-camera-outline"></i>
-                    <span>PHOTOGRAPHY</span>
-                    <p class="separator">To an English person, it will seem like simplified English,told me what </p>
+                    <p class="separator">Using the data to improve the experience for the client and customer alike.</p>
 
                 </div>
 
@@ -200,36 +213,54 @@
                         <div class="col-lg-4 col-md-6 portfolio-thumbnail all branding uikits webdesign">
                             <a href="Img/portfolio/1.jpg" data-toggle="modal" data-target="#myModal">
                                 <img src="Img/portfolio/1.jpg" alt="img">
+                                <div class="overlay">
+                                    Java Exercise 1
+                                </div>
                             </a>
                         </div>
 
                         <div class="col-lg-4 col-md-6 portfolio-thumbnail all mockups uikits photography">
                             <a href="Img/portfolio/2.jpg" data-toggle="modal" data-target="#myModal2">
                                 <img src="Img/portfolio/2.jpg" alt="img">
+                                <div class="overlay">
+                                    Java Exercise 2
+                                </div>
                             </a>
                         </div>
 
                         <div class="col-lg-4 col-md-6 portfolio-thumbnail all branding webdesig photographyn">
                             <a href="Img/portfolio/3.jpg" data-toggle="modal" data-target="#myModal3">
                                 <img src="Img/portfolio/3.jpg" alt="img">
+                                <div class="overlay">
+                                    Java Exercise 3
+                                </div>
                             </a>
                         </div>
 
                         <div class="col-lg-4 col-md-6 portfolio-thumbnail all mockups webdesign photography">
                             <a href="Img/portfolio/4.jpg" data-toggle="modal" data-target="#myModal4">
                                 <img src="Img/portfolio/4.jpg" alt="img">
+                                <div class="overlay">
+                                    Java Exercise 4
+                                </div>
                             </a>
                         </div>
 
                         <div class="col-lg-4 col-md-6 portfolio-thumbnail all branding uikits photography">
                             <a href="Img/portfolio/5.jpg" data-toggle="modal" data-target="#myModal5">
                                 <img src="Img/portfolio/5.jpg" alt="img">
+                                <div class="overlay">
+                                    Java Exercise 5
+                                </div>
                             </a>
                         </div>
 
                         <div class="col-lg-4 col-md-6 portfolio-thumbnail all mockups uikits webdesign">
                             <a href="Img/portfolio/6.jpg" data-toggle="modal" data-target="#myModal6">
                                 <img src="Img/portfolio/6.jpg" alt="img">
+                                <div class="overlay">
+                                    Java Exercise 6
+                                </div>
                             </a>
                         </div>
 
@@ -524,20 +555,59 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h3 class="modal-title">Java Exercise 1</h3>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Basic Maths 101</h3>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    Modal body..
+                    <div class="container row">
+                        <div class="row offset-1 h6">
+                            Fill each of the 5 fields with a number to begin some advanced calculations.
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row h6">
+                                <input type="text" />
+                            </div>
+                            <div class="row h6">
+                                <input type="text" />
+                            </div>
+                            <div class="row h6">
+                                <input type="text" />
+                            </div>
+                            <div class="row h6">
+                                <input type="text" />
+                            </div>
+                            <div class="row h6">
+                                <input type="text" />
+                            </div>
+                            <div class="row h6">
+                                <div class="btn-group btn-group-sm">
+                                    <button type="button" class="btn btn-primary">Calculate Numbers</button>
+                                    <button type="button" class="btn btn-success">Clear Fields</button>
+                                    <button type="button" class="btn btn-warning">Toggle Code</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Col-md-6 offset-1">
+                            <div class="row h6">
+                                Returned text answer.
+                            </div>
+                            <div class="row h6">
+                                Returned text answer.
+                            </div>
+                            <div class="row h6">
+                                Returned text answer.
+                            </div>
+                            <div class="row h6">
+                                Returned text answer.
+                            </div>
+                            <div class="row h6">
+                                Returned text answer.
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-
             </div>
         </div>
     </div>
@@ -558,6 +628,28 @@
     <!-- Template Main Javascript File -->
     <script src="JS/main.js"></script>
 
+    <!--<script>
+        //var demostr = "5";
+        //ShowAlert()
+        //function ShowAlert() {
+        //    alert("The value of string is: " + demostr + ".")
+        //}
+
+        //looping structure
+        var message = "";
+        for (var loop = 0, innerLoop = 0; loop < 50; loop++) {
+            innerLoop++;
+            message += loop + " ";
+        }
+        alert("after running " + innerLoop + " times the message is " + message + ".")
+
+    </script>-->
+    <!--<script>
+        //jquery to add event handler
+        $("#btnloop").click(function () {
+
+        });
+    </script>-->
 </body>
 
 </html>

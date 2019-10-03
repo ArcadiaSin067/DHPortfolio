@@ -1,0 +1,20 @@
+[
+  {
+    "outputFileName": "Cont/magnific-popup.min.css",
+    "inputFiles": [
+      "Cont/magnific-popup.css"
+    ]
+  },
+  {
+    "outputFileName": "Cont/responsive.min.css",
+    "inputFiles": [
+      "Cont/responsive.css"
+    ]
+  },
+  {
+    "outputFileName": "Cont/style.min.css",
+    "inputFiles": [
+      "Cont/style.css"
+    ]
+  }
+]
