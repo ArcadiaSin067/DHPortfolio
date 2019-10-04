@@ -75,7 +75,12 @@ $(document).ready(function() {
   //  Typed Js
   // ========================================================================= //
 
-  var typed = $(".typed");
+    var typed = $(".typed");
+    var typed = $('.typedRes1');
+    var typed = $('.typedRes2');
+    var typed = $('.typedRes3');
+    var typed = $('.typedRes4');
+    var typed = $('.typedRes5');
 
   $(function() {
     typed.typed({
@@ -84,7 +89,6 @@ $(document).ready(function() {
       loop: true,
     });
   });
-
 
   // ========================================================================= //
   //  Owl Carousel Services

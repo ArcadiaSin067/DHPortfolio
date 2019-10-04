@@ -31,34 +31,49 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="Img/favicon.png">
 
+    <!-- SyntaxHighlighter -->
+    <link href="Scripts/SyntaxHighlighter/styles/shCore.css" rel="stylesheet" />
+    <link href="Scripts/SyntaxHighlighter/styles/shThemeMidnight.css" rel="stylesheet" />
+
+    <!-- Styles -->
     <style>
         .overlay {
             position: absolute;
             top: 0;
+            left: 15px;
+            right: 15px;
+            min-height: 60px;
             background: rgb(0, 0, 0);
             background: rgba(0, 0, 0, 0.67); /* Black see-through */
             color: #f1f1f1;
-            width: 92%;
             transition: .5s ease;
             opacity: 0;
             color: white;
             font-size: 20px;
-            padding: 25px;
+            padding: 10px;
             text-align: center;
         }
         .portfolio-thumbnail:hover .overlay {
             opacity: 1;
         }
+        ::placeholder {
+          color: darkgrey;
+          opacity:.5; /* Firefox */
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+         color: darkgrey;
+         opacity:.5;
+        }
+
+        ::-ms-input-placeholder { /* Microsoft Edge */
+         color: darkgrey;
+         opacity:.5;
+
+        }
     </style>
 
 
-
-    <!-- =======================================================
-      Theme Name: Folio
-      Theme URL: https://bootstrapmade.com/folio-bootstrap-portfolio-template/
-      Author: BootstrapMade.com
-      Author URL: https://bootstrapmade.com
-    ======================================================= -->
 </head>
 
 <body>
@@ -199,8 +214,8 @@
 
                         <ul class="nav list-unstyled" id="portfolio-flters">
                             <li class="filter filter-active" data-filter=".all">all</li>
-                            <li class="filter" data-filter=".branding">branding</li>
-                            <li class="filter" data-filter=".mockups">mockups</li>
+                            <li class="filter" data-filter=".branding">math</li>
+                            <li class="filter" data-filter=".mockups">words</li>
                             <li class="filter" data-filter=".uikits">ui kits</li>
                             <li class="filter" data-filter=".webdesign">web design</li>
                             <li class="filter" data-filter=".photography">photography</li>
@@ -214,7 +229,7 @@
                             <a href="Img/portfolio/1.jpg" data-toggle="modal" data-target="#myModal">
                                 <img src="Img/portfolio/1.jpg" alt="img">
                                 <div class="overlay">
-                                    Java Exercise 1
+                                    Java Exercise 1:<br>Simple Maths
                                 </div>
                             </a>
                         </div>
@@ -560,50 +575,52 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <div class="container row">
-                        <div class="row offset-1 h6">
-                            Fill each of the 5 fields with a number to begin some advanced calculations.
+                    <div class="container">
+                        <div class="row">
+                            Fill up to 5 fields with a number to begin some basic calculations. Calculate will show you the smallest number, the largest number, the average of the numbers, the sum total of the numbers, and the multiplied value of the numbers. A blank field will equal a zero.
                         </div>
-                        <div class="col-md-6">
-                            <div class="row h6">
-                                <input type="text" />
+                        <div class="row" style="padding-top:20px">
+                            <div class="col-md-3">
+                                <div class="row h6" style="padding-left:2px">
+                                    <input type="text" id="UTI-1" style="width:100%; padding-left:5px" placeholder="Field 1" />
+                                </div>
+                                <div class="row h6" style="padding-left:2px">
+                                    <input type="text" id="UTI-2" style="width:100%; padding-left:5px" placeholder="Field 2" />
+                                </div>
+                                <div class="row h6" style="padding-left:2px">
+                                    <input type="text" id="UTI-3" style="width:100%; padding-left:5px" placeholder="Field 3" />
+                                </div>
+                                <div class="row h6" style="padding-left:2px">
+                                    <input type="text" id="UTI-4" style="width:100%; padding-left:5px" placeholder="Field 4" />
+                                </div>
+                                <div class="row h6" style="padding-left:2px">
+                                    <input type="text" id="UTI-5" style="width:100%; padding-left:5px" placeholder="Field 5" />
+                                </div>
                             </div>
-                            <div class="row h6">
-                                <input type="text" />
-                            </div>
-                            <div class="row h6">
-                                <input type="text" />
-                            </div>
-                            <div class="row h6">
-                                <input type="text" />
-                            </div>
-                            <div class="row h6">
-                                <input type="text" />
-                            </div>
-                            <div class="row h6">
-                                <div class="btn-group btn-group-sm">
-                                    <button type="button" class="btn btn-primary">Calculate Numbers</button>
-                                    <button type="button" class="btn btn-success">Clear Fields</button>
-                                    <button type="button" class="btn btn-warning">Toggle Code</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <div class="col-md-8 offset-1">
+                                <div class="row" style="min-height:30px">
+                                    <span id="result1"></span>
+                                </div>
+                                <div class="row" style="min-height:30px">
+                                    <span id="result2"></span>
+                                </div>
+                                <div class="row" style="min-height:30px">
+                                    <span id="result3"></span>
+                                </div>
+                                <div class="row" style="min-height:30px">
+                                    <span id="result4"></span>
+                                </div>
+                                <div class="row" style="min-height:30px">
+                                    <span id="result5"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="Col-md-6 offset-1">
-                            <div class="row h6">
-                                Returned text answer.
-                            </div>
-                            <div class="row h6">
-                                Returned text answer.
-                            </div>
-                            <div class="row h6">
-                                Returned text answer.
-                            </div>
-                            <div class="row h6">
-                                Returned text answer.
-                            </div>
-                            <div class="row h6">
-                                Returned text answer.
+                        <div class="row h6" style="padding: 15px 0 0 25px">
+                            <div class="btn-group btn-group-sm offset-2">
+                                <button type="button" class="btn btn-primary" id="BM-btn-1">Calculate</button>
+                                <button type="button" class="btn btn-success" id="BM-btn-2">Clear Fields</button>
+                                <button type="button" class="btn btn-warning" id="BM-btn-3">Toggle Code</button>
+                                <button type="button" class="btn btn-danger" id="BM-btn-4" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -628,28 +645,58 @@
     <!-- Template Main Javascript File -->
     <script src="JS/main.js"></script>
 
-    <!--<script>
-        //var demostr = "5";
-        //ShowAlert()
-        //function ShowAlert() {
-        //    alert("The value of string is: " + demostr + ".")
-        //}
+    <!-- SyntaxHighlighter -->
+    <script src="Scripts/SyntaxHighlighter/scripts/shBrushJScript.js"></script>
+    <script src="Scripts/SyntaxHighlighter/scripts/shCore.js"></script>
 
-        //looping structure
-        var message = "";
-        for (var loop = 0, innerLoop = 0; loop < 50; loop++) {
-            innerLoop++;
-            message += loop + " ";
-        }
-        alert("after running " + innerLoop + " times the message is " + message + ".")
-
-    </script>-->
-    <!--<script>
-        //jquery to add event handler
-        $("#btnloop").click(function () {
-
+    <!-- script to pull data and calc it -->
+    <script>
+        //the calc btn
+        $('#BM-btn-1').click(function () {
+            //step1, get input
+            var num1 = Number($('#UTI-1').val());
+            var num2 = Number($('#UTI-2').val());
+            var num3 = Number($('#UTI-3').val());
+            var num4 = Number($('#UTI-4').val());
+            var num5 = Number($('#UTI-5').val());
+            //step2, calculate the fields
+            var sum = num1 + num2 + num3 + num4 + num5;
+            var least = Math.min(num1, num2, num3, num4, num5);
+            var most = Math.max(num1, num2, num3, num4, num5);
+            var mult = (num1 * num2 * num3 * num4 * num5);
+            var ave = (sum / 5);
+            //step3, output the results
+            var out1 = "The smallest of your #'s is " + least + ".";
+            var out2 = "The largest of your #'s is " + most + ".";
+            var out3 = "The average of your #'s is " + ave + ".";
+            var out4 = "The sum total of your #'s is " + sum + ".";
+            var out5 = "The product of your #'s is " + mult + ".";
+            $('#result1').text(out1);
+            $('#result2').text(out2);
+            $('#result3').text(out3);
+            $('#result4').text(out4);
+            $('#result5').text(out5);
         });
-    </script>-->
+        //clear the ins and outs
+        $('#BM-btn-2').click(function () {
+            $('#UTI-1,#UTI-2,#UTI-3,#UTI-4,#UTI-5').val("");
+            $('#result1, #result2, #result3, #result4, #result5').text("");
+        });
+        //close and clear
+        $('#BM-btn-4').click(function () {
+            $('#UTI-1,#UTI-2,#UTI-3,#UTI-4,#UTI-5').val("");
+            $('#result1, #result2, #result3, #result4, #result5').text("");
+        });
+    </script>
+
+    <script type="text/javascript">
+        SyntaxHighlighter.all();
+            //$("#divCode").hide();
+            //$("#BM-btn-3").click(function () {
+            //    $('#divCode').toggle();
+            //});
+    </script>
+
 </body>
 
 </html>
