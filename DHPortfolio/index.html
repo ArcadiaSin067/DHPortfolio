@@ -58,17 +58,17 @@
         }
         ::placeholder {
           color: darkgrey;
-          opacity:.5; /* Firefox */
+          opacity:.67; /* Firefox */
         }
 
         :-ms-input-placeholder { /* Internet Explorer 10-11 */
          color: darkgrey;
-         opacity:.5;
+         opacity:.67;
         }
 
         ::-ms-input-placeholder { /* Microsoft Edge */
          color: darkgrey;
-         opacity:.5;
+         opacity:.67;
 
         }
     </style>
@@ -229,7 +229,7 @@
                             <a href="Img/portfolio/1.jpg" data-toggle="modal" data-target="#myModal">
                                 <img src="Img/portfolio/1.jpg" alt="img">
                                 <div class="overlay">
-                                    Java Exercise 1:<br>Simple Maths
+                                    Java Exercise 1:<br>Super Hard Maths
                                 </div>
                             </a>
                         </div>
@@ -570,14 +570,14 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h3 class="modal-title">Basic Maths 101</h3>
+                    <h3 class="modal-title">Mathematics 101</h3>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
-                            Fill up to 5 fields with a number to begin some basic calculations. Calculate will show you the smallest number, the largest number, the average of the numbers, the sum total of the numbers, and the multiplied value of the numbers. A blank field will equal a zero.
+                            Fill up to 5 fields with a number to begin some basic calculations. Calculate will show you the smallest number, the largest number, the average of the numbers, the sum total of the numbers, and the multiplied value of the numbers. A field containing a letter is excluded.
                         </div>
                         <div class="row" style="padding-top:20px">
                             <div class="col-md-3">
@@ -623,6 +623,55 @@
                                 <button type="button" class="btn btn-danger" id="BM-btn-4" data-dismiss="modal">Close</button>
                             </div>
                         </div>
+                        <div class="row h6" id="mathCode">
+                            <div class="col">
+                                <pre class="brush: js">
+
+//script to pull data and calc it
+//the calc btn
+$('#BM-btn-1').click(function () {
+    //establish variables and calculatable array
+    var count = 0; var sum = 0; var mult = 0; var least = 0; var most = 0; var ave = 0;
+    let calcVals = new Array();
+    //run a loop that checks each field to see it there is something in it,
+    for (i = 1; i <= 5; i++) {
+        var str = '#UTI-' + i;
+        if ($(str).val() != "" && !isNaN(Number($(str).val()))) { //a field is excluded if it is blank or NaN
+            calcVals.push(Number($(str).val())); //push the non-excluded fields to a new array
+            if (calcVals.length == 1) { //each loop pass will assign a new highest and lowest
+                least = calcVals[count];
+                most = calcVals[count];
+                mult = 1;
+            }
+            if (calcVals[count] > most) { //assigning highest
+                most = calcVals[count];
+            }
+            else if (calcVals[count] < least) { //assigning lowest
+                least = calcVals[count];
+            }
+
+            sum = sum += calcVals[count]; //calculate the total sum by adding each array item value together
+            mult = mult * calcVals[count]; //multiply all non-excluded fields together
+            ave = (sum / calcVals.length); //average the fields using the sum
+            count++
+        }
+    }
+    //output the results
+    var out1 = "The smallest of your #'s is " + least + ".";
+    var out2 = "The largest of your #'s is " + most + ".";
+    var out3 = "The average of your #'s is " + ave + ".";
+    var out4 = "The sum total of your #'s is " + sum + ".";
+    var out5 = "The product of your #'s is " + mult + ".";
+    $('#result1').text(out1);
+    $('#result2').text(out2);
+    $('#result3').text(out3);
+    $('#result4').text(out4);
+    $('#result5').text(out5);
+});
+
+                                </pre>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -646,26 +695,40 @@
     <script src="JS/main.js"></script>
 
     <!-- SyntaxHighlighter -->
-    <script src="Scripts/SyntaxHighlighter/scripts/shBrushJScript.js"></script>
     <script src="Scripts/SyntaxHighlighter/scripts/shCore.js"></script>
+    <script src="Scripts/SyntaxHighlighter/scripts/shBrushJScript.js"></script>
 
-    <!-- script to pull data and calc it -->
     <script>
+        //script to pull data and calc it
         //the calc btn
         $('#BM-btn-1').click(function () {
-            //step1, get input
-            var num1 = Number($('#UTI-1').val());
-            var num2 = Number($('#UTI-2').val());
-            var num3 = Number($('#UTI-3').val());
-            var num4 = Number($('#UTI-4').val());
-            var num5 = Number($('#UTI-5').val());
-            //step2, calculate the fields
-            var sum = num1 + num2 + num3 + num4 + num5;
-            var least = Math.min(num1, num2, num3, num4, num5);
-            var most = Math.max(num1, num2, num3, num4, num5);
-            var mult = (num1 * num2 * num3 * num4 * num5);
-            var ave = (sum / 5);
-            //step3, output the results
+            //establish variables and calculatable array
+            var count = 0; var sum = 0; var mult = 0; var least = 0; var most = 0; var ave = 0;
+            let calcVals = new Array();
+            //run a loop that checks each field to see it there is something in it,
+            for (i = 1; i <= 5; i++) {
+                var str = '#UTI-' + i;
+                if ($(str).val() != "" && !isNaN(Number($(str).val()))) { //a field is excluded if it is blank or NaN
+                    calcVals.push(Number($(str).val())); //push the non-excluded fields to a new array
+                    if (calcVals.length == 1) { //each loop pass will assign a new highest and lowest
+                        least = calcVals[count];
+                        most = calcVals[count];
+                        mult = 1;
+                    }
+                    if (calcVals[count] > most) { //assigning highest
+                        most = calcVals[count];
+                    }
+                    else if (calcVals[count] < least) { //assigning lowest
+                        least = calcVals[count];
+                    }
+
+                    sum = sum += calcVals[count]; //calculate the total sum by adding each array item value together
+                    mult = mult * calcVals[count]; //multiply all non-excluded fields together
+                    ave = (sum / calcVals.length); //average the fields using the sum
+                    count++
+                }
+            }
+            //output the results
             var out1 = "The smallest of your #'s is " + least + ".";
             var out2 = "The largest of your #'s is " + most + ".";
             var out3 = "The average of your #'s is " + ave + ".";
@@ -677,6 +740,9 @@
             $('#result4').text(out4);
             $('#result5').text(out5);
         });
+
+    </script>
+    <script>
         //clear the ins and outs
         $('#BM-btn-2').click(function () {
             $('#UTI-1,#UTI-2,#UTI-3,#UTI-4,#UTI-5').val("");
@@ -686,15 +752,18 @@
         $('#BM-btn-4').click(function () {
             $('#UTI-1,#UTI-2,#UTI-3,#UTI-4,#UTI-5').val("");
             $('#result1, #result2, #result3, #result4, #result5').text("");
+            $("#mathCode").hide();
+        });
+        //toggle code for java exercises
+        $("#mathCode").hide();
+        $("#BM-btn-3").click(function () {
+            $('#mathCode').toggle();
         });
     </script>
 
+    <!--highlight sections of code in java exercises-->
     <script type="text/javascript">
         SyntaxHighlighter.all();
-            //$("#divCode").hide();
-            //$("#BM-btn-3").click(function () {
-            //    $('#divCode').toggle();
-            //});
     </script>
 
 </body>

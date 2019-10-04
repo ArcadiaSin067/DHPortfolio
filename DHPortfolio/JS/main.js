@@ -76,11 +76,6 @@ $(document).ready(function() {
   // ========================================================================= //
 
     var typed = $(".typed");
-    var typed = $('.typedRes1');
-    var typed = $('.typedRes2');
-    var typed = $('.typedRes3');
-    var typed = $('.typedRes4');
-    var typed = $('.typedRes5');
 
   $(function() {
     typed.typed({
