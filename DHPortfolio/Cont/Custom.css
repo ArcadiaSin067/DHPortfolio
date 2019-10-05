@@ -1,0 +1,38 @@
+﻿body {}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 15px;
+    right: 15px;
+    min-height: 60px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.67); /* Black see-through */
+    color: #f1f1f1;
+    transition: .5s ease;
+    opacity: 0;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.portfolio-thumbnail:hover .overlay {
+    opacity: 1;
+}
+
+::placeholder {
+    color: darkgrey;
+    opacity: .67; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: darkgrey;
+    opacity: .67;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: darkgrey;
+    opacity: .67;
+}
+

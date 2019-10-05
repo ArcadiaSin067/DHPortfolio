@@ -33,46 +33,10 @@
 
     <!-- SyntaxHighlighter -->
     <link href="Scripts/SyntaxHighlighter/styles/shCore.css" rel="stylesheet" />
-    <link href="Scripts/SyntaxHighlighter/styles/shThemeMidnight.css" rel="stylesheet" />
+    <link href="Scripts/SyntaxHighlighter/styles/shThemeEmacs.css" rel="stylesheet" />
 
-    <!-- Styles -->
-    <style>
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 15px;
-            right: 15px;
-            min-height: 60px;
-            background: rgb(0, 0, 0);
-            background: rgba(0, 0, 0, 0.67); /* Black see-through */
-            color: #f1f1f1;
-            transition: .5s ease;
-            opacity: 0;
-            color: white;
-            font-size: 20px;
-            padding: 10px;
-            text-align: center;
-        }
-        .portfolio-thumbnail:hover .overlay {
-            opacity: 1;
-        }
-        ::placeholder {
-          color: darkgrey;
-          opacity:.67; /* Firefox */
-        }
-
-        :-ms-input-placeholder { /* Internet Explorer 10-11 */
-         color: darkgrey;
-         opacity:.67;
-        }
-
-        ::-ms-input-placeholder { /* Microsoft Edge */
-         color: darkgrey;
-         opacity:.67;
-
-        }
-    </style>
-
+    <!-- Custom Styles -->
+    <link href="Cont/Custom.css" rel="stylesheet" />
 
 </head>
 
@@ -615,15 +579,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row h6" style="padding: 15px 0 0 25px">
-                            <div class="btn-group btn-group-sm offset-2">
+                        <div class="row justify-content-end" style="padding-top: 15px;">
+                            <div class="btn-group btn-group-sm">
                                 <button type="button" class="btn btn-primary" id="BM-btn-1">Calculate</button>
                                 <button onclick="CClear1()" type="button" class="btn btn-success" id="BM-btn-2">Clear Fields</button>
                                 <button type="button" class="btn btn-warning" id="BM-btn-3">Toggle Code</button>
                                 <button onclick="CClear1()" type="button" class="btn btn-danger" id="BM-btn-4" data-dismiss="modal">Close</button>
                             </div>
                         </div>
-                        <div class="row h6" id="mathCode">
+                        <div class="row" id="mathCode">
                             <div class="col">
                                 <pre class="brush: js">
 
@@ -631,27 +595,26 @@
 //the calc btn
 $('#BM-btn-1').click(function () {
     //establish variables and calculatable array
-    var count = 0; var sum = 0; var mult = 0; var least = 0; var most = 0; var ave = 0;
+    var count = 0, sum = 0, mult = 0, least = 0, most = 0, ave = 0;
     let calcVals = new Array();
     //run a loop that checks each field to see it there is something in it,
     for (i = 1; i <= 5; i++) {
         var str = '#UTI-' + i;
         if ($(str).val() != "" && !isNaN(Number($(str).val()))) { //a field is excluded if it is blank or NaN
             calcVals.push(Number($(str).val())); //push the non-excluded fields to a new array
-            if (calcVals.length == 1) { //each loop pass will assign a new highest and lowest
+            if (calcVals.length == 1) { //makes the highest and lowest number equal to the first number in the array
                 least = calcVals[count];
                 most = calcVals[count];
                 mult = 1;
             }
-            if (calcVals[count] > most) { //assigning highest
+            if (calcVals[count] > most) { //assigning highest for each loop through
                 most = calcVals[count];
             }
-            else if (calcVals[count] < least) { //assigning lowest
+            else if (calcVals[count] < least) { //assigning lowest for each loop through
                 least = calcVals[count];
             }
-
-            sum = sum += calcVals[count]; //calculate the total sum by adding each array item value together
-            mult = mult * calcVals[count]; //multiply all non-excluded fields together
+            sum += calcVals[count]; //calculate the total sum by adding each array item value together
+            mult *= calcVals[count]; //multiply all numbers within the array together
             ave = (sum / calcVals.length); //average the fields using the sum
             count++
         }
@@ -698,67 +661,13 @@ $('#BM-btn-1').click(function () {
     <script src="Scripts/SyntaxHighlighter/scripts/shCore.js"></script>
     <script src="Scripts/SyntaxHighlighter/scripts/shBrushJScript.js"></script>
 
-    <script>
-        //script to pull data and calc it
-        //the calc btn
-        $('#BM-btn-1').click(function () {
-            //establish variables and calculatable array
-            var count = 0; var sum = 0; var mult = 0; var least = 0; var most = 0; var ave = 0;
-            let calcVals = new Array();
-            //run a loop that checks each field to see it there is something in it,
-            for (i = 1; i <= 5; i++) {
-                var str = '#UTI-' + i;
-                if ($(str).val() != "" && !isNaN(Number($(str).val()))) { //a field is excluded if it is blank or NaN
-                    calcVals.push(Number($(str).val())); //push the non-excluded fields to a new array
-                    if (calcVals.length == 1) { //each loop pass will assign a new highest and lowest
-                        least = calcVals[count];
-                        most = calcVals[count];
-                        mult = 1;
-                    }
-                    if (calcVals[count] > most) { //assigning highest
-                        most = calcVals[count];
-                    }
-                    else if (calcVals[count] < least) { //assigning lowest
-                        least = calcVals[count];
-                    }
+    <!-- Custom Scripts -->
+    <script src="JS/Custom.js"></script>
 
-                    sum = sum += calcVals[count]; //calculate the total sum by adding each array item value together
-                    mult = mult * calcVals[count]; //multiply all non-excluded fields together
-                    ave = (sum / calcVals.length); //average the fields using the sum
-                    count++
-                }
-            }
-            //output the results
-            var out1 = "The smallest of your #'s is " + least + ".";
-            var out2 = "The largest of your #'s is " + most + ".";
-            var out3 = "The average of your #'s is " + ave + ".";
-            var out4 = "The sum total of your #'s is " + sum + ".";
-            var out5 = "The product of your #'s is " + mult + ".";
-            $('#result1').text(out1);
-            $('#result2').text(out2);
-            $('#result3').text(out3);
-            $('#result4').text(out4);
-            $('#result5').text(out5);
-        });
+    <!-- Hide the code toggles on startup -->
+    <script>$("#mathCode").hide();</script>
 
-    </script>
-    <script>
-        $("#mathCode").hide();
-        // this clears the fields, results, and math code
-        function CClear1() {
-            $('#UTI-1,#UTI-2,#UTI-3,#UTI-4,#UTI-5').val("");
-            $('#result1, #result2, #result3, #result4, #result5').text("");
-            $("#mathCode").hide();
-        };
-        //toggle math code for java exercises
-        $("#BM-btn-3").click(function () {
-            $('#mathCode').toggle();
-        });
-        //on clicking away from modal1 this calls the Clear above
-        $('#myModal').on('hidden.bs.modal', function(){CClear1()});
-    </script>
-
-    <!--highlight sections of code in java exercises-->
+    <!-- Highlight sections of code in java exercises -->
     <script type="text/javascript">
         SyntaxHighlighter.all();
     </script>

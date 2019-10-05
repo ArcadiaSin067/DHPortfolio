@@ -49,7 +49,6 @@
   font-style: normal !important;
   font-size: 1em !important;
   min-height: inherit !important;
-  min-height: auto !important;
 }
 
 .syntaxhighlighter {
@@ -76,7 +75,7 @@
 }
 .syntaxhighlighter table caption {
   text-align: left !important;
-  padding: .5em 0 0.5em 1em !important;
+  padding: 0 0.5em 0 0.5em !important;
 }
 .syntaxhighlighter table td.code {
   width: 100% !important;

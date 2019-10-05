@@ -92,6 +92,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cont\Custom.css" />
     <Content Include="Cont\magnific-popup.min.css">
       <DependentUpon>magnific-popup.css</DependentUpon>
     </Content>
@@ -126,6 +127,7 @@
     <Content Include="index.html" />
     <Content Include="JS\bootstrap.bundle.min.js" />
     <Content Include="JS\contactform.js" />
+    <Content Include="JS\Custom.js" />
     <Content Include="JS\isotope.pkgd.min.js" />
     <Content Include="JS\jquery-migrate.min.js" />
     <Content Include="JS\jquery.min.js" />
