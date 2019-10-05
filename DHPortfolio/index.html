@@ -618,9 +618,9 @@
                         <div class="row h6" style="padding: 15px 0 0 25px">
                             <div class="btn-group btn-group-sm offset-2">
                                 <button type="button" class="btn btn-primary" id="BM-btn-1">Calculate</button>
-                                <button type="button" class="btn btn-success" id="BM-btn-2">Clear Fields</button>
+                                <button onclick="CClear1()" type="button" class="btn btn-success" id="BM-btn-2">Clear Fields</button>
                                 <button type="button" class="btn btn-warning" id="BM-btn-3">Toggle Code</button>
-                                <button type="button" class="btn btn-danger" id="BM-btn-4" data-dismiss="modal">Close</button>
+                                <button onclick="CClear1()" type="button" class="btn btn-danger" id="BM-btn-4" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                         <div class="row h6" id="mathCode">
@@ -743,22 +743,19 @@ $('#BM-btn-1').click(function () {
 
     </script>
     <script>
-        //clear the ins and outs
-        $('#BM-btn-2').click(function () {
-            $('#UTI-1,#UTI-2,#UTI-3,#UTI-4,#UTI-5').val("");
-            $('#result1, #result2, #result3, #result4, #result5').text("");
-        });
-        //close and clear
-        $('#BM-btn-4').click(function () {
+        $("#mathCode").hide();
+        // this clears the fields, results, and math code
+        function CClear1() {
             $('#UTI-1,#UTI-2,#UTI-3,#UTI-4,#UTI-5').val("");
             $('#result1, #result2, #result3, #result4, #result5').text("");
             $("#mathCode").hide();
-        });
-        //toggle code for java exercises
-        $("#mathCode").hide();
+        };
+        //toggle math code for java exercises
         $("#BM-btn-3").click(function () {
             $('#mathCode').toggle();
         });
+        //on clicking away from modal1 this calls the Clear above
+        $('#myModal').on('hidden.bs.modal', function(){CClear1()});
     </script>
 
     <!--highlight sections of code in java exercises-->
