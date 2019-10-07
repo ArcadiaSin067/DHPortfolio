@@ -1,5 +1,5 @@
 ﻿
-//script to pull data and calc it
+//script to pull data and calc it for basic math modal
 $('#BM-btn-1').click(function () {
     //establish variables and calculatable array
     var count = 0, sum = 0, mult = 0, least = 0, most = 0, ave = 0;
@@ -7,7 +7,7 @@ $('#BM-btn-1').click(function () {
     //run a loop that checks each field to see it there is something in it,
     for (i = 1; i <= 5; i++) {
         var str = '#UTI-' + i;
-        if ($(str).val() != "" && !isNaN(Number($(str).val()))) { //a field is excluded if it is blank or NaN
+        if ($(str).val() != "" && $.isNumeric(Number($(str).val()))) { //a field is excluded if it is blank or NaN
             calcVals.push(Number($(str).val())); //push the non-excluded fields to a new array
             if (calcVals.length == 1) { //makes the highest and lowest number equal to the first number in the array
                 least = calcVals[count];
@@ -39,18 +39,52 @@ $('#BM-btn-1').click(function () {
     $('#result5').text(out5);
 });
 
-// this clears the fields, results, and math code
+//function to find the factorial of a number
+function factorialize(num) {
+    var result = num, out; //set variables
+    if (num < 0) { //if the input is a negative number tell to make positive
+        out = "Please enter a positive number."
+    };
+    if (num < 171) {
+        if (num === 0 || num === 1) //if the input is 0 or 1 then the result is 1 otherwise factorialize
+            out = "The Factorial of your # is 1."
+        while (num > 1) {
+            num--;
+            result *= num;
+            out = "The Factorial of your # is " + result + ".";
+        };
+    };
+    if (num >= 171) { //if the input exceeds 170 tell it is to big
+        out = "This number is too high to display.";
+    };
+    if (num = isNaN(num)) { //if the input is not a number tell to put a number
+        out = "Please enter a valid number."
+    };
+    //print result
+    $('#factRes').text(out);
+};
+
+// this section has a clear for the fields, results, and hidden codes of the modals
 function CClear1() {
     $('#UTI-1,#UTI-2,#UTI-3,#UTI-4,#UTI-5').val("");
     $('#result1, #result2, #result3, #result4, #result5').text("");
     $("#mathCode").hide();
 };
+function CClear2() {
+    $('#FTI').val("");
+    $('#factRes').text("");
+    $("#factCode").hide();
+};
 
-//toggle math code for java exercises
+//toggle the hidden codes for java exercises
 $("#BM-btn-3").click(function () {
     $('#mathCode').toggle();
 });
+$("#Fa-btn-3").click(function () {
+    $('#factCode').toggle();
+});
 
-//on clicking away from modal1 this calls the Clear above
+//on clicking away from the modals this calls the Clears above
 $('#myModal').on('hidden.bs.modal', function () { CClear1() });
+$('#myModal2').on('hidden.bs.modal', function () { CClear2() });
 

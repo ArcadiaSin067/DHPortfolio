@@ -193,7 +193,7 @@
                             <a href="Img/portfolio/1.jpg" data-toggle="modal" data-target="#myModal">
                                 <img src="Img/portfolio/1.jpg" alt="img">
                                 <div class="overlay">
-                                    Java Exercise 1:<br>Super Hard Maths
+                                    Java Exercise 1:<br />Super Hard Maths
                                 </div>
                             </a>
                         </div>
@@ -202,7 +202,7 @@
                             <a href="Img/portfolio/2.jpg" data-toggle="modal" data-target="#myModal2">
                                 <img src="Img/portfolio/2.jpg" alt="img">
                                 <div class="overlay">
-                                    Java Exercise 2
+                                    Java Exercise 2:<br />Factorials
                                 </div>
                             </a>
                         </div>
@@ -211,7 +211,7 @@
                             <a href="Img/portfolio/3.jpg" data-toggle="modal" data-target="#myModal3">
                                 <img src="Img/portfolio/3.jpg" alt="img">
                                 <div class="overlay">
-                                    Java Exercise 3
+                                    Java Exercise 3:<br />FizzBuzz
                                 </div>
                             </a>
                         </div>
@@ -220,7 +220,7 @@
                             <a href="Img/portfolio/4.jpg" data-toggle="modal" data-target="#myModal4">
                                 <img src="Img/portfolio/4.jpg" alt="img">
                                 <div class="overlay">
-                                    Java Exercise 4
+                                    Java Exercise 4:<br />Palindromes
                                 </div>
                             </a>
                         </div>
@@ -507,21 +507,69 @@
     <div class="modal fade" id="myModal2">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h3 class="modal-title">Java Exercise 2</h3>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Mathematics 102</h3>
                 </div>
-
                 <!-- Modal body -->
                 <div class="modal-body">
-                    Modal body..
-                </div>
+                    <div class="container">
+                        <div class="row">
+                            Enter a number that you would like calculated as a factorial. The calculate button will find the factorial for any positive number you use up to 170. Higher numbers will exceed the computer's ability to display them.
+                        </div>
+                        <div class="row" style="padding-top:20px">
+                            <div class="col-md-3">
+                                <div class="row h6" style="padding-left:2px">
+                                    <input type="text" id="FTI" style="width:100%; padding-left:5px" placeholder="Factorial" />
+                                </div>
+                            </div>
+                            <div class="col-md-8 offset-1">
+                                <div class="row" style="min-height:30px">
+                                    <span id="factRes"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end" style="padding-top: 15px;">
+                            <div class="btn-group btn-group-sm">
+                                <button onclick="factorialize(Number(document.getElementById('FTI').value))" type="button" class="btn btn-primary" id="Fa-btn-1">Calculate</button>
+                                <button onclick="CClear2()" type="button" class="btn btn-success" id="Fa-btn-2">Clear</button>
+                                <button type="button" class="btn btn-warning" id="Fa-btn-3">Toggle Code</button>
+                                <button onclick="CClear2()" type="button" class="btn btn-danger" id="Fa-btn-4" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                        <div class="row" id="factCode">
+                            <div class="col">
+                                <pre class="brush: js">
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+//function to find the factorial of a number
+function factorialize(num) {
+    var result = num, out; //set variables
+    if (num < 0) { //if the input is a negative number tell to make positive
+        out = "Please enter a positive number."
+    };
+    if (num < 171) {
+        if (num === 0 || num === 1) //if the input is 0 or 1 then the result is 1 otherwise factorialize
+            out = "The Factorial of your # is 1."
+        while (num > 1) {
+            num--;
+            result *= num;
+            out = "The Factorial of your # is " + result + ".";
+        };
+    };
+    if (num >= 171) { //if the input exceeds 170 tell it is to big
+        out = "This number is too high to display.";
+    };
+    if (num = isNaN(num)) { //if the input is not a number tell to put a number
+        out = "Please enter a valid number."
+    };
+    //print result
+    $('#factRes').text(out);
+};
+
+                            </pre>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -531,12 +579,10 @@
     <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h3 class="modal-title">Mathematics 101</h3>
                 </div>
-
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div class="container">
@@ -582,7 +628,7 @@
                         <div class="row justify-content-end" style="padding-top: 15px;">
                             <div class="btn-group btn-group-sm">
                                 <button type="button" class="btn btn-primary" id="BM-btn-1">Calculate</button>
-                                <button onclick="CClear1()" type="button" class="btn btn-success" id="BM-btn-2">Clear Fields</button>
+                                <button onclick="CClear1()" type="button" class="btn btn-success" id="BM-btn-2">Clear</button>
                                 <button type="button" class="btn btn-warning" id="BM-btn-3">Toggle Code</button>
                                 <button onclick="CClear1()" type="button" class="btn btn-danger" id="BM-btn-4" data-dismiss="modal">Close</button>
                             </div>
@@ -666,6 +712,8 @@ $('#BM-btn-1').click(function () {
 
     <!-- Hide the code toggles on startup -->
     <script>$("#mathCode").hide();</script>
+    <script>$("#factCode").hide();</script>
+
 
     <!-- Highlight sections of code in java exercises -->
     <script type="text/javascript">
