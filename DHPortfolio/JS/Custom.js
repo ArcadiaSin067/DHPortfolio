@@ -39,7 +39,6 @@ $('#BM-btn-1').click(function () {
     $('#result5').text(out5);
 });
 
-
 //function to find the factorial of a number
 function factorialize(num) {
     var result = num, out; //set variables
@@ -67,23 +66,35 @@ function factorialize(num) {
 
 //on clicking the Buzz It! button this will trigger the FizzBuzz code to run
 $('#FB-btn-1').click(FBClick);
-
 function FBClick() { // function called on click
     let num1 = document.getElementById('Fizz').value; //get the Fizz user input number
     let num2 = document.getElementById('Buzz').value; //get the Buzz user input number
     output = FizzBuzz(num1, num2); //call FizzBuzz function, set the variables to the user inputs
     $('#FBRes').html(output); //output the array to the results column
 }
-//function to run the fizz-buzz 
-function FizzBuzz(val1, val2) {
+function FizzBuzz(val1, val2) { //function to run the fizz-buzz 
     let myArray = []; //create an array
     for (loop = 1; loop < 101; loop++) { //loop through the array, 1 to 100
         myArray[loop - 1] = ((loop % val1 == 0 ? '<span id="Fizz">Fizz</span>' : '') + //if the modulist of fizz = 0 then print Fizz, else return false
-        (loop % val2 == 0 ? '<span id="Buzz">Buzz</span>' : '') || loop); //if the modulist of buzz = 0 then print BUzz, else return false (if neither is 0 then print the loop #)
+        (loop % val2 == 0 ? '<span id="Buzz">Buzz</span>' : '') || loop); //if the modulist of buzz = 0 then print Buzz, else return false (if neither is 0 then print the loop #)
     }
     return myArray.join(' - '); //compile the array and add a hyphen between each part 
 }
 
+//function to find a palindrome
+function PalInput() {
+    var str = document.getElementById('PTI').value; //get user input
+    var re = /[\W_]/g; //use a RegExp to remove all non-alphanumeric characters 
+    var lowRegStr = str.toLowerCase().replace(re, ''); //convert the whole string to lower case and apply the RegExp
+    var reverseStr = lowRegStr.split('').reverse().join(''); //convert the above to a string, reverse it, and recombine to a new string
+    if (reverseStr === lowRegStr) { //if the condensed string is = to the reversed string use the first result, otherwise use the second result
+        var result = (`The word/phrase you entered is "${str}". Reversed and condensed it is "${reverseStr}". This makes a palindrome.`);
+    }
+    else {
+        var result = (`The word/phrase you entered is "${str}". Reversed and condensed it is "${reverseStr}". This does not make a palindrome.`);
+    }
+    $('#PalRes').text(result); //print the output
+}
 
 //this section has a clear for the fields, results, and hidden codes of the modals
 function CClear1() {
@@ -101,6 +112,11 @@ function CClear3() {
     $('#FBRes').text("");
     $('#FBCode').hide();
 }
+function CClear4() {
+    $('#PTI').val("");
+    $('#PalRes').text("");
+    $('#PalCode').hide();
+}
 
 //toggle the hidden codes for java exercises
 $("#BM-btn-3").click(function () {
@@ -112,11 +128,14 @@ $("#Fa-btn-3").click(function () {
 $("#FB-btn-3").click(function () {
     $('#FBCode').toggle();
 });
-
+$("#Pa-btn-3").click(function () {
+    $('#PalCode').toggle();
+});
 
 //on clicking away from the modals this calls the Clears above
 $('#myModal').on('hidden.bs.modal', function () { CClear1() });
 $('#myModal2').on('hidden.bs.modal', function () { CClear2() });
 $('#myModal3').on('hidden.bs.modal', function () { CClear3() });
+$('#myModal4').on('hidden.bs.modal', function () { CClear4() });
 
 

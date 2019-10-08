@@ -459,21 +459,60 @@
     <div class="modal fade" id="myModal4">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h3 class="modal-title">Java Exercise 4</h3>
+                    <h3 class="modal-title">Palindromes</h3>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-
                 <!-- Modal body -->
                 <div class="modal-body">
-                    Modal body..
-                </div>
+                    <div class="container">
+                        <div class="row">
+                            Enter a word or phrase that could be a Palindrome. The "Palindrome?" button will determine if your entry is the same sequence reversed.
+                        </div>
+                        <div class="row" style="padding-top:20px">
+                            <div class="col-md-5">
+                                <div class="row h6" style="padding-left:2px">
+                                    <input type="text" id="PTI" style="width:100%; padding-left:5px" placeholder="Word/Phrase" />
+                                </div>
+                            </div>
+                            <div class="col-md-6 offset-1">
+                                <div class="row" style="min-height:30px">
+                                    <span id="PalRes"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center" style="padding-top: 15px;">
+                            <div class="btn-group btn-group-sm">
+                                <button onclick="PalInput()" type="button" class="btn btn-primary" id="Pa-btn-1">Palindrome?</button>
+                                <button onclick="CClear4()" type="button" class="btn btn-success" id="Pa-btn-2">Clear</button>
+                                <button type="button" class="btn btn-warning" id="Pa-btn-3">Toggle Code</button>
+                                <button onclick="CClear4()" type="button" class="btn btn-danger" id="Pa-btn-4" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                        <div class="row" id="PalCode">
+                            <div class="col">
+                                <pre class="brush: js">
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+//function to find a palindrome
+function PalInput() {
+    var str = document.getElementById('PTI').value; //get user input
+    var re = /[\W_]/g; //use a RegExp to remove all non-alphanumeric characters 
+    var lowRegStr = str.toLowerCase().replace(re, ''); //convert the whole string to lower case and apply the RegExp
+    var reverseStr = lowRegStr.split('').reverse().join(''); //convert the above to a string, reverse it, and recombine to a new string
+    if (reverseStr === lowRegStr) { //if the condensed string is = to the reversed string use the first result, otherwise use the second result
+        var result = (`The word/phrase you entered is "${str}". Reversed and condensed it is "${reverseStr}". This makes a palindrome.`);
+    }
+    else {
+        var result = (`The word/phrase you entered is "${str}". Reversed and condensed it is "${reverseStr}". This does not make a palindrome.`);
+    }
+    $('#PalRes').text(result); //print the output
+}
+
+                            </pre>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -534,7 +573,7 @@ function FizzBuzz(val1, val2) {
     let myArray = []; //create an array
     for (loop = 1; loop < 101; loop++) { //loop through the array, 1 to 100
         myArray[loop - 1] = ((loop % val1 == 0 ? '<span id="Fizz">Fizz</span>' : '') + //if the modulist of fizz = 0 then print Fizz, else return false
-        (loop % val2 == 0 ? '<span id="Buzz">Buzz</span>' : '') || loop); //if the modulist of buzz = 0 then print BUzz, else return false (if neither is 0 then print the loop #)
+        (loop % val2 == 0 ? '<span id="Buzz">Buzz</span>' : '') || loop); //if the modulist of buzz = 0 then print Buzz, else return false (if neither is 0 then print the loop #)
     }
     return myArray.join(' - '); //compile the array and add a hyphen between each part 
 }
@@ -759,6 +798,7 @@ $('#BM-btn-1').click(function () {
     <script>$("#mathCode").hide();</script>
     <script>$("#factCode").hide();</script>
     <script>$("#FBCode").hide();</script>
+    <script>$("#PalCode").hide();</script>
 
     <!-- Highlight sections of code in java exercises -->
     <script>SyntaxHighlighter.all()</script>
