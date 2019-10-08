@@ -1,5 +1,14 @@
 ﻿body {}
 
+#Fizz{
+    color:orangered;
+    font-size:large;
+}
+#Buzz {
+    color: deepskyblue;
+    font-size: large;
+}
+
 .overlay{
     position: absolute;
     top: 0;

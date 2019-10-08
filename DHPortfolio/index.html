@@ -483,21 +483,66 @@
     <div class="modal fade" id="myModal3">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h3 class="modal-title">Java Exercise 3</h3>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">FizzBuzz</h3>
                 </div>
-
                 <!-- Modal body -->
                 <div class="modal-body">
-                    Modal body..
-                </div>
+                    <div class="container">
+                        <div class="row">
+                            Enter two numbers, each between 1 and 100. The "Buzz It!" button will find all multiples of the Fizz number, the Buzz number, and the combination of your numbers. This will print all numbers between 1 and 100 and replace the inputs with their names.
+                        </div>
+                        <div class="row" style="padding-top:20px">
+                            <div class="col-md-3">
+                                <div class="row h6" style="padding-left:2px">
+                                    <input type="text" id="Fizz" style="width:100%; padding-left:5px" placeholder="Fizz" />
+                                </div>
+                                <div class="row h6" style="padding-left:2px">
+                                    <input type="text" id="Buzz" style="width:100%; padding-left:5px" placeholder="Buzz" />
+                                </div>
+                            </div>
+                            <div class="col-md-8 offset-1">
+                                <div class="row" style="min-height:30px">
+                                    <span class="h6" style="color:black" id="FBRes"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center" style="padding-top: 15px;">
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn btn-primary" id="FB-btn-1">Buzz It!</button>
+                                <button onclick="CClear3()" type="button" class="btn btn-success" id="FB-btn-2">Clear</button>
+                                <button type="button" class="btn btn-warning" id="FB-btn-3">Toggle Code</button>
+                                <button onclick="CClear3()" type="button" class="btn btn-danger" id="FB-btn-4" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                        <div class="row" id="FBCode">
+                            <div class="col">
+                                <pre class="brush: js">
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+//on clicking the Buzz It! button this will trigger the FizzBuzz code to run
+$('#FB-btn-1').click(FBClick);
+
+function FBClick() { // function called on click
+    let num1 = document.getElementById('Fizz').value; //get the Fizz user input number
+    let num2 = document.getElementById('Buzz').value; //get the Buzz user input number
+    output = FizzBuzz(num1, num2); //call FizzBuzz function, set the variables to the user inputs
+    $('#FBRes').html(output); //output the array to the results column
+}
+//function to run the fizz-buzz 
+function FizzBuzz(val1, val2) {
+    let myArray = []; //create an array
+    for (loop = 1; loop < 101; loop++) { //loop through the array, 1 to 100
+        myArray[loop - 1] = ((loop % val1 == 0 ? '<span id="Fizz">Fizz</span>' : '') + //if the modulist of fizz = 0 then print Fizz, else return false
+        (loop % val2 == 0 ? '<span id="Buzz">Buzz</span>' : '') || loop); //if the modulist of buzz = 0 then print BUzz, else return false (if neither is 0 then print the loop #)
+    }
+    return myArray.join(' - '); //compile the array and add a hyphen between each part 
+}
+
+                            </pre>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -515,7 +560,7 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
-                            Enter a number that you would like calculated as a factorial. The calculate button will find the factorial for any positive number you use up to 170. Higher numbers will exceed the computer's ability to display them.
+                            Enter a number that you would like calculated as a factorial. The Factorial button will find the factorial for any positive number you use up to 170. Higher numbers will exceed Javascript's ability to display them.
                         </div>
                         <div class="row" style="padding-top:20px">
                             <div class="col-md-3">
@@ -529,9 +574,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row justify-content-end" style="padding-top: 15px;">
+                        <div class="row justify-content-center" style="padding-top: 15px;">
                             <div class="btn-group btn-group-sm">
-                                <button onclick="factorialize(Number(document.getElementById('FTI').value))" type="button" class="btn btn-primary" id="Fa-btn-1">Calculate</button>
+                                <button onclick="factorialize(Number(document.getElementById('FTI').value))" type="button" class="btn btn-primary" id="Fa-btn-1">Factorial</button>
                                 <button onclick="CClear2()" type="button" class="btn btn-success" id="Fa-btn-2">Clear</button>
                                 <button type="button" class="btn btn-warning" id="Fa-btn-3">Toggle Code</button>
                                 <button onclick="CClear2()" type="button" class="btn btn-danger" id="Fa-btn-4" data-dismiss="modal">Close</button>
@@ -625,7 +670,7 @@ function factorialize(num) {
                                 </div>
                             </div>
                         </div>
-                        <div class="row justify-content-end" style="padding-top: 15px;">
+                        <div class="row justify-content-center" style="padding-top: 15px;">
                             <div class="btn-group btn-group-sm">
                                 <button type="button" class="btn btn-primary" id="BM-btn-1">Calculate</button>
                                 <button onclick="CClear1()" type="button" class="btn btn-success" id="BM-btn-2">Clear</button>
@@ -713,12 +758,10 @@ $('#BM-btn-1').click(function () {
     <!-- Hide the code toggles on startup -->
     <script>$("#mathCode").hide();</script>
     <script>$("#factCode").hide();</script>
-
+    <script>$("#FBCode").hide();</script>
 
     <!-- Highlight sections of code in java exercises -->
-    <script type="text/javascript">
-        SyntaxHighlighter.all();
-    </script>
+    <script>SyntaxHighlighter.all()</script>
 
 </body>
 

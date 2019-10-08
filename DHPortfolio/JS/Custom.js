@@ -2,7 +2,7 @@
 //script to pull data and calc it for basic math modal
 $('#BM-btn-1').click(function () {
     //establish variables and calculatable array
-    var count = 0, sum = 0, mult = 0, least = 0, most = 0, ave = 0;
+    let count = 0, sum = 0, mult = 0, least = 0, most = 0, ave = 0;
     let calcVals = new Array();
     //run a loop that checks each field to see it there is something in it,
     for (i = 1; i <= 5; i++) {
@@ -39,6 +39,7 @@ $('#BM-btn-1').click(function () {
     $('#result5').text(out5);
 });
 
+
 //function to find the factorial of a number
 function factorialize(num) {
     var result = num, out; //set variables
@@ -55,7 +56,7 @@ function factorialize(num) {
         };
     };
     if (num >= 171) { //if the input exceeds 170 tell it is to big
-        out = "This number is too high to display.";
+        out = "The Factorial of your # is too big to display.";
     };
     if (num = isNaN(num)) { //if the input is not a number tell to put a number
         out = "Please enter a valid number."
@@ -64,7 +65,27 @@ function factorialize(num) {
     $('#factRes').text(out);
 };
 
-// this section has a clear for the fields, results, and hidden codes of the modals
+//on clicking the Buzz It! button this will trigger the FizzBuzz code to run
+$('#FB-btn-1').click(FBClick);
+
+function FBClick() { // function called on click
+    let num1 = document.getElementById('Fizz').value; //get the Fizz user input number
+    let num2 = document.getElementById('Buzz').value; //get the Buzz user input number
+    output = FizzBuzz(num1, num2); //call FizzBuzz function, set the variables to the user inputs
+    $('#FBRes').html(output); //output the array to the results column
+}
+//function to run the fizz-buzz 
+function FizzBuzz(val1, val2) {
+    let myArray = []; //create an array
+    for (loop = 1; loop < 101; loop++) { //loop through the array, 1 to 100
+        myArray[loop - 1] = ((loop % val1 == 0 ? '<span id="Fizz">Fizz</span>' : '') + //if the modulist of fizz = 0 then print Fizz, else return false
+        (loop % val2 == 0 ? '<span id="Buzz">Buzz</span>' : '') || loop); //if the modulist of buzz = 0 then print BUzz, else return false (if neither is 0 then print the loop #)
+    }
+    return myArray.join(' - '); //compile the array and add a hyphen between each part 
+}
+
+
+//this section has a clear for the fields, results, and hidden codes of the modals
 function CClear1() {
     $('#UTI-1,#UTI-2,#UTI-3,#UTI-4,#UTI-5').val("");
     $('#result1, #result2, #result3, #result4, #result5').text("");
@@ -75,6 +96,11 @@ function CClear2() {
     $('#factRes').text("");
     $("#factCode").hide();
 };
+function CClear3() {
+    $('#Fizz,#Buzz').val("");
+    $('#FBRes').text("");
+    $('#FBCode').hide();
+}
 
 //toggle the hidden codes for java exercises
 $("#BM-btn-3").click(function () {
@@ -83,8 +109,14 @@ $("#BM-btn-3").click(function () {
 $("#Fa-btn-3").click(function () {
     $('#factCode').toggle();
 });
+$("#FB-btn-3").click(function () {
+    $('#FBCode').toggle();
+});
+
 
 //on clicking away from the modals this calls the Clears above
 $('#myModal').on('hidden.bs.modal', function () { CClear1() });
 $('#myModal2').on('hidden.bs.modal', function () { CClear2() });
+$('#myModal3').on('hidden.bs.modal', function () { CClear3() });
+
 
