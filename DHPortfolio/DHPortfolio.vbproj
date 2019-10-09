@@ -110,6 +110,7 @@
     <Content Include="Cont\responsive.css" />
     <Content Include="Cont\style.css" />
     <Content Include="Img\avatar.jpg" />
+    <Content Include="Img\banner.jpg" />
     <Content Include="Img\blog-post-1.jpg" />
     <Content Include="Img\blog-post-2.jpg" />
     <Content Include="Img\blog-post-3.jpg" />
