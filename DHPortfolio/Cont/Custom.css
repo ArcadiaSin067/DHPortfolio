@@ -1,11 +1,11 @@
 ﻿body {}
 
-#Fizz{
-    color:orangered;
-    font-size:large;
+#Fizz {
+    color: deepskyblue;
+    font-size: large;
 }
 #Buzz {
-    color: deepskyblue;
+    color: orangered;
     font-size: large;
 }
 
