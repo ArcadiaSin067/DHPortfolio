@@ -88,12 +88,13 @@ function PalInput() {
     var lowRegStr = str.toLowerCase().replace(re, ''); //convert the whole string to lower case and apply the RegExp
     var reverseStr = lowRegStr.split('').reverse().join(''); //convert the above to a string, reverse it, and recombine to a new string
     if (reverseStr === lowRegStr) { //if the condensed string is = to the reversed string use the first result, otherwise use the second result
-        var result = (`The word/phrase you entered is "${str}". Reversed and condensed it is "${reverseStr}". This makes a palindrome.`);
+        var out = " Which makes a palindrome!";
     }
     else {
-        var result = (`The word/phrase you entered is "${str}". Reversed and condensed it is "${reverseStr}". This does not make a palindrome.`);
+        var out = " Which does not make a palindrome.";
     }
-    $('#PalRes').text(result); //print the output
+    var result = (`What you entered is "${str}". Reversed and condensed this makes "${reverseStr}".`);
+    $('#PalRes').text(result + out); //print the output
 }
 
 //this section has a clear for the fields, results, and hidden codes of the modals
