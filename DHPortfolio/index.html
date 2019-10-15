@@ -729,7 +729,7 @@ $('#BM-btn-1').click(function () {
     //run a loop that checks each field to see it there is something in it,
     for (i = 1; i <= 5; i++) {
         var str = '#UTI-' + i;
-        if ($(str).val() != "" && !isNaN(Number($(str).val()))) { //a field is excluded if it is blank or NaN
+        if ($(str).val() != "" && $.isNumeric(Number($(str).val()))) { //a field is excluded if it is blank or NaN
             calcVals.push(Number($(str).val())); //push the non-excluded fields to a new array
             if (calcVals.length == 1) { //makes the highest and lowest number equal to the first number in the array
                 least = calcVals[count];
