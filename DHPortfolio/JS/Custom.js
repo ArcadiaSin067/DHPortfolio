@@ -97,6 +97,54 @@ function PalInput() {
     $('#PalRes').text(result + out); //print the output
 }
 
+//declare global variables
+var xo = "X", Win = false, a, b, c;
+
+function GoThere(e) { //function on click to place an X or O
+    if ($(e).text() == "") {
+        $('#whoTurn').text(`It is now ${xo}'s turn`); //list what turn it is
+        Turn = (xo == "O") ? xo = "X" : xo = "O";
+        $(e).text(Turn);
+        check4Win();
+    }
+}
+function check4Win() { //begin win check by setting all boxes to a variable
+    var bx1 = $('#box1').text(), bx2 = $('#box2').text(), bx3 = $('#box3').text(),
+        bx4 = $('#box4').text(), bx5 = $('#box5').text(), bx6 = $('#box6').text(),
+        bx7 = $('#box7').text(), bx8 = $('#box8').text(), bx9 = $('#box9').text();
+    if (!Win) { //look for all matching instances of 3 in a row
+        if (bx1 == bx2 && bx1 == bx3 && bx1 != "") {
+            Win = true; a = 1, b = 2, c = 3;
+        }
+        else if (bx4 == bx5 && bx4 == bx6 && bx4 != "") {
+            Win = true; a = 4, b = 5, c = 6;
+        }
+        else if (bx7 == bx8 && bx7 == bx9 && bx7 != "") {
+            Win = true; a = 7, b = 8, c = 9;
+        }
+        else if (bx1 == bx4 && bx1 == bx7 && bx1 != "") {
+            Win = true; a = 1, b = 4, c = 7;
+        }
+        else if (bx2 == bx5 && bx2 == bx8 && bx2 != "") {
+            Win = true; a = 2, b = 5, c = 8;
+        }
+        else if (bx3 == bx6 && bx3 == bx9 && bx3 != "") {
+            Win = true; a = 3, b = 6, c = 9;
+        }
+        else if (bx1 == bx5 && bx1 == bx9 && bx1 != "") {
+            Win = true; a = 1, b = 5, c = 9;
+        }
+        else if (bx3 == bx5 && bx3 == bx7 && bx3 != "") {
+            Win = true; a = 3, b = 5, c = 7;
+        }
+        if (Win) { //output the winner and shift the boxes to show it
+            $('#TTTresult').text((xo) + " Wins!");
+            return $(`#box${a}, #box${b}, #box${c}`).addClass("Won");
+        }
+    }
+}
+
+
 //this section has a clear for the fields, results, and hidden codes of the modals
 function CClear1() {
     $('#UTI-1,#UTI-2,#UTI-3,#UTI-4,#UTI-5').val("");
@@ -118,6 +166,13 @@ function CClear4() {
     $('#PalRes').text("");
     $('#PalCode').hide();
 }
+function CClear5() {
+    $('#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9').text("");
+    $('#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9').removeClass("Won");
+    $('#TTTresult').text("Play until someone lines up 3 X's or O's!");
+    $('#whoTurn').text("It is now O's turn");
+    Win = false; $('#TTTCode').hide(); xo = "X";
+}
 
 //toggle the hidden codes for java exercises
 $("#BM-btn-3").click(function () {
@@ -132,11 +187,15 @@ $("#FB-btn-3").click(function () {
 $("#Pa-btn-3").click(function () {
     $('#PalCode').toggle();
 });
+$("#TTT-btn-2").click(function () {
+    $('#TTTCode').toggle();
+});
 
 //on clicking away from the modals this calls the Clears above
 $('#myModal').on('hidden.bs.modal', function () { CClear1() });
 $('#myModal2').on('hidden.bs.modal', function () { CClear2() });
 $('#myModal3').on('hidden.bs.modal', function () { CClear3() });
 $('#myModal4').on('hidden.bs.modal', function () { CClear4() });
+$('#myModal5').on('hidden.bs.modal', function () { CClear5() });
 
 

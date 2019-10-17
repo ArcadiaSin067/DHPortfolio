@@ -1,4 +1,28 @@
-﻿body {}
+﻿table {
+    margin: 10px auto;
+}
+table.tabSize tr td {
+    font-size: 50px;
+}
+td {
+    color:sienna;
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+.vert {
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+}
+.hori {
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+}
+.Won {
+    color: white;
+    background-color: red;
+}
 
 #Fizz {
     color: deepskyblue;
@@ -28,7 +52,6 @@
     padding: 10px;
     text-align: center;
 }
-
 .portfolio-thumbnail:hover .overlay {
     opacity: 1;
 }
@@ -37,14 +60,11 @@
     color: darkgrey;
     opacity: .67; /* Firefox */
 }
-
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: darkgrey;
     opacity: .67;
 }
-
 ::-ms-input-placeholder { /* Microsoft Edge */
     color: darkgrey;
     opacity: .67;
 }
-
