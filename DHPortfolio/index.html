@@ -450,6 +450,7 @@
                         <div class="row" style="font-size:larger">
                             <span id="whoTurn">It is now O's turn</span>
                         </div>
+                        <hr style="margin-bottom:1px" />
                         <div class="row">
                             <table class="tabSize">
                                 <tr>
@@ -469,12 +470,24 @@
                                 </tr>
                             </table>
                         </div>
+                        <hr style="margin-top:1px" />
+                        <div class="row">
+                            <div class="col-md-4 d-flex justify-content-end">
+                                <span id="Mode" style="max-height:22px">2 Player</span>
+                            </div>
+                            <div class="col-md-4 range-field" style=" width:100px">
+                                <input type="range" id="DiffSelect" name="points" onchange="selectMe(this.value);" min="1" class="rangeAll" max="3" value="1">
+                            </div>
+                            <div class="col-md-4">
+                                <span id="SubMode" style="max-height:22px">With Friends</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="row justify-content-center" style="padding-top: 15px;">
                         <div class="btn-group btn-group-sm">
                             <button onclick="CClear5()" type="button" class="btn btn-success" id="TTT-btn-1">Reset</button>
                             <button type="button" class="btn btn-warning" id="TTT-btn-2">Toggle Code</button>
-                            <button onclick="CClear5()" type="button" class="btn btn-danger" id="TTT-btn-3" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" id="TTT-btn-3" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                     <div class="row" id="TTTCode">
@@ -573,7 +586,7 @@ function check4Win() { //begin win check by setting all boxes to a variable
                                 <button onclick="PalInput()" type="button" class="btn btn-primary" id="Pa-btn-1">Palindrome?</button>
                                 <button onclick="CClear4()" type="button" class="btn btn-success" id="Pa-btn-2">Clear</button>
                                 <button type="button" class="btn btn-warning" id="Pa-btn-3">Toggle Code</button>
-                                <button onclick="CClear4()" type="button" class="btn btn-danger" id="Pa-btn-4" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" id="Pa-btn-4" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                         <div class="row" id="PalCode">
@@ -638,7 +651,7 @@ function PalInput() {
                                 <button type="button" class="btn btn-primary" id="FB-btn-1">Buzz It!</button>
                                 <button onclick="CClear3()" type="button" class="btn btn-success" id="FB-btn-2">Clear</button>
                                 <button type="button" class="btn btn-warning" id="FB-btn-3">Toggle Code</button>
-                                <button onclick="CClear3()" type="button" class="btn btn-danger" id="FB-btn-4" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" id="FB-btn-4" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                         <div class="row" id="FBCode">
@@ -704,7 +717,7 @@ function FizzBuzz(val1, val2) {
                                 <button onclick="factorialize(Number(document.getElementById('FTI').value))" type="button" class="btn btn-primary" id="Fa-btn-1">Factorial</button>
                                 <button onclick="CClear2()" type="button" class="btn btn-success" id="Fa-btn-2">Clear</button>
                                 <button type="button" class="btn btn-warning" id="Fa-btn-3">Toggle Code</button>
-                                <button onclick="CClear2()" type="button" class="btn btn-danger" id="Fa-btn-4" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" id="Fa-btn-4" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                         <div class="row" id="factCode">
@@ -800,7 +813,7 @@ function factorialize(num) {
                                 <button type="button" class="btn btn-primary" id="BM-btn-1">Calculate</button>
                                 <button onclick="CClear1()" type="button" class="btn btn-success" id="BM-btn-2">Clear</button>
                                 <button type="button" class="btn btn-warning" id="BM-btn-3">Toggle Code</button>
-                                <button onclick="CClear1()" type="button" class="btn btn-danger" id="BM-btn-4" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" id="BM-btn-4" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                         <div class="row" id="mathCode">

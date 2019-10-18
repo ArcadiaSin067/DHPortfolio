@@ -150,6 +150,22 @@ function check4Win() { //begin win check by setting all boxes to a variable
         }
     }
 }
+function selectMe(value) {
+    value = parseInt(value, 10); // Convert to an integer
+    if (value === 1) {
+        $('#DiffSelect').removeClass('rangeEasy', 'rangeHard').addClass('range2P');
+        $('#Mode').text('2 Player'); CClear5();
+        $('#SubMode').text('With Friends');
+    } else if (value === 2) {
+        $('#DiffSelect').removeClass('range2P', 'rangeHard').addClass('rangeEasy');
+        $('#Mode').text('AI Easy'); CClear5();
+        $('#SubMode').text('The Fun One');
+    } else if (value === 3) {
+        $('#DiffSelect').removeClass('rangeEasy', 'range2P').addClass('rangeHard');
+        $('#Mode').text('AI Hard'); CClear5();
+        $('#SubMode').text('Can You Win?');
+    }
+}
 
 
 //this section has a clear for the fields, results, and hidden codes of the modals
@@ -174,11 +190,12 @@ function CClear4() {
     $('#PalCode').hide();
 }
 function CClear5() {
-    $('#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9').text("");
     $('#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9').removeClass("Won");
+    $('#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9').text("");
     $('#TTTresult').text("Play until someone lines up 3 X's or O's!");
-    $('#whoTurn').text("It is now O's turn"); count = 0;
-    Win = false; $('#TTTCode').hide(); xo = "X";
+    $('#whoTurn').text("It is now O's turn");
+    $('#TTTCode').hide(); xo = "X";
+    count = 0; Win = false; 
 }
 
 //toggle the hidden codes for java exercises
@@ -203,6 +220,10 @@ $('#myModal').on('hidden.bs.modal', function () { CClear1() });
 $('#myModal2').on('hidden.bs.modal', function () { CClear2() });
 $('#myModal3').on('hidden.bs.modal', function () { CClear3() });
 $('#myModal4').on('hidden.bs.modal', function () { CClear4() });
-$('#myModal5').on('hidden.bs.modal', function () { CClear5() });
+$('#myModal5').on('hidden.bs.modal', function () {
+    CClear5(); $('#DiffSelect').val(1); selectMe($('#DiffSelect').val());
+});
 
+//$('#myModal5').on('hidden.bs.modal', function () { $('#DiffSelect').val(1) });
+//$('#myModal5').on('hidden.bs.modal', function () { selectMe($('#DiffSelect').val()); });
 

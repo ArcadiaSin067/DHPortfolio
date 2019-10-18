@@ -2,12 +2,12 @@
     margin: 10px auto;
 }
 table.tabSize tr td {
-    font-size: 50px;
+    font-size: 55px;
 }
 td {
     color: #852607;
-    width: 100px;
-    height: 100px;
+    width: 85px;
+    height: 85px;
     text-align: center;
 }
 .vert {
@@ -19,7 +19,7 @@ td {
     border-bottom: 3px solid black;
 }
 .Won {
-    border-radius:45px;
+    border-radius:35px;
     color: white;
     font-weight:bold;
     background-color: #ba1f1f;
