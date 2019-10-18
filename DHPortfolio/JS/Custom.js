@@ -98,14 +98,16 @@ function PalInput() {
 }
 
 //declare global variables
-var xo = "X", Win = false, a, b, c;
+var xo = "X", Win = false, a, b, c, count = 0;
 
 function GoThere(e) { //function on click to place an X or O
     if ($(e).text() == "") {
-        $('#whoTurn').text(`It is now ${xo}'s turn`); //list what turn it is
-        Turn = (xo == "O") ? xo = "X" : xo = "O";
-        $(e).text(Turn);
-        check4Win();
+        if (!Win) {
+            $('#whoTurn').text(`It is now ${xo}'s turn`); //list what turn it is
+            Turn = (xo == "O") ? xo = "X" : xo = "O";
+            $(e).text(Turn); count++;
+            check4Win();
+        }
     }
 }
 function check4Win() { //begin win check by setting all boxes to a variable
@@ -137,8 +139,13 @@ function check4Win() { //begin win check by setting all boxes to a variable
         else if (bx3 == bx5 && bx3 == bx7 && bx3 != "") {
             Win = true; a = 3, b = 5, c = 7;
         }
+        else if (!Win && count == 9) { //this checks if the game ends in a draw
+            $('#TTTresult').text('This game is a Draw...');
+            $('#whoTurn').text("Reset and try again?");
+        }
         if (Win) { //output the winner and shift the boxes to show it
-            $('#TTTresult').text((xo) + " Wins!");
+            $('#whoTurn').text((xo) + "'s" + " Win!"); //Woo-Hoo!
+            $('#TTTresult').text("Congratulations!");
             return $(`#box${a}, #box${b}, #box${c}`).addClass("Won");
         }
     }
@@ -170,7 +177,7 @@ function CClear5() {
     $('#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9').text("");
     $('#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9').removeClass("Won");
     $('#TTTresult').text("Play until someone lines up 3 X's or O's!");
-    $('#whoTurn').text("It is now O's turn");
+    $('#whoTurn').text("It is now O's turn"); count = 0;
     Win = false; $('#TTTCode').hide(); xo = "X";
 }
 

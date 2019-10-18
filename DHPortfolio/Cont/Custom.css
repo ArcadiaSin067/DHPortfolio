@@ -5,8 +5,7 @@ table.tabSize tr td {
     font-size: 50px;
 }
 td {
-    color:sienna;
-    padding: 10px;
+    color: #852607;
     width: 100px;
     height: 100px;
     text-align: center;
@@ -20,8 +19,10 @@ td {
     border-bottom: 3px solid black;
 }
 .Won {
+    border-radius:45px;
     color: white;
-    background-color: red;
+    font-weight:bold;
+    background-color: #ba1f1f;
 }
 
 #Fizz {

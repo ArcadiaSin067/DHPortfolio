@@ -472,7 +472,7 @@
                     </div>
                     <div class="row justify-content-center" style="padding-top: 15px;">
                         <div class="btn-group btn-group-sm">
-                            <button onclick="CClear5()" type="button" class="btn btn-success" id="TTT-btn-1">Clear</button>
+                            <button onclick="CClear5()" type="button" class="btn btn-success" id="TTT-btn-1">Reset</button>
                             <button type="button" class="btn btn-warning" id="TTT-btn-2">Toggle Code</button>
                             <button onclick="CClear5()" type="button" class="btn btn-danger" id="TTT-btn-3" data-dismiss="modal">Close</button>
                         </div>
@@ -480,16 +480,17 @@
                     <div class="row" id="TTTCode">
                         <div class="col">
                             <pre class="brush: js">
-
 //declare global variables
-var xo = "X", Win = false, a, b, c;
+var xo = "X", Win = false, a, b, c, count = 0;
 
 function GoThere(e) { //function on click to place an X or O
     if ($(e).text() == "") {
-        $('#whoTurn').text(`It is now ${xo}s turn`); //list what turn it is
-        Turn = (xo == "O") ? xo = "X" : xo = "O";
-        $(e).text(Turn);
-        check4Win();
+        if (!Win) { //if no one has won, lets play on!
+            $('#whoTurn').text(`It is now ${xo}s turn`); //list what turn it is
+            Turn = (xo == "O") ? xo = "X" : xo = "O"; //swap the turns
+            $(e).text(Turn); count++;
+            check4Win();
+        }
     }
 }
 
@@ -522,8 +523,13 @@ function check4Win() { //begin win check by setting all boxes to a variable
         else if (bx3 == bx5 && bx3 == bx7 && bx3 != "") {
             Win = true; a = 3, b = 5, c = 7;
         }
+        else if (!Win && count == 9) { //this checks if the game ends in a draw
+            $('#TTTresult').text('This game is a Draw...');
+            $('#whoTurn').text("Reset and try again?");
+        }
         if (Win) { //output the winner and shift the boxes to show it
-            $('#TTTresult').text((xo) + " Wins!");
+            $('#whoTurn').text((xo) + "'s" + " Win!"); //Woo-Hoo!
+            $('#TTTresult').text("Congratulations!");
             return $(`#box${a}, #box${b}, #box${c}`).addClass("Won");
         }
     }
