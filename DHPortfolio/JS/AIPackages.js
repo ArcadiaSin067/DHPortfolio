@@ -221,7 +221,6 @@ function check4Win() { //begin win check by setting all boxes to a variable
     }
 }
 
-
 // script for easy mode AI
 function EasyAI() {
     if (xo == "X") { // check its AIs turn
@@ -279,12 +278,8 @@ function HardAI() {
             else if (bx9 == bx5 && bx9 == "X" && bx1 == bx8 && bx1 == "O" && count == 4) {
                 e = "#box3";
             }
-            // section below is for avoiding player traps
-            else if (bx1 == bx6 && bx1 == "O" && bx3 == "") {e = "#box3";}
-            else if (bx1 == bx8 && bx1 == "O" && bx7 == "") {e = "#box7";}
-            else if (bx1 == bx9 && bx1 == "O" && bx2 == "") {e = "#box2";}
+            // section below is for avoiding some player traps
             else if (bx3 == bx7 && bx3 == "O" && bx2 == "") {e = "#box2";}
-            else if (bx3 == bx8 && bx3 == "O" && bx9 == "") {e = "#box9";}
             else if (bx7 == bx6 && bx7 == "O" && bx9 == "") {e = "#box9";}
             else if (bx9 == bx2 && bx9 == "O" && bx3 == "") {e = "#box3";}
             else if (bx9 == bx4 && bx9 == "O" && bx7 == "") {e = "#box7";}
@@ -299,6 +294,81 @@ function HardAI() {
             else if (bx3 == "") {e = "#box3";}
             else if (bx7 == "") {e = "#box7";}
             else if (bx9 == "") {e = "#box9";}
+            else { // failing all the above, this picks a random square
+                let RandArray = new Array();
+                for (i = 1; i <= 9; i++) { // run a loop that checks all boxes if empty
+                    var str = '#box' + i;
+                    if ($(str).text() == "") { // a box is excluded if it is full
+                        RandArray.push(str); // push the non-excluded boxes to new array
+                    }
+                }
+                // this takes the new array and picks a random element in it
+                var Rndum = RandArray[Math.floor(Math.random() * RandArray.length)];
+                e = Rndum; // that random element is set to the picked box to play
+            }
+        }
+        PlaceInBox(e); // output the chosen box
+    }
+}
+
+
+// script for the Legendary AI
+function Legendary() {
+    if (xo == "X") { // check its AIs turn
+        WinScenario(); // check for a winning move
+        BlockScenario(); // check for a blocking move
+        if (winS == 0 && blkS == 0 && count < 9) { //if no win or block, set variables
+            var bx1 = $('#box1').text(), bx2 = $('#box2').text(), bx3 = $('#box3').text(),
+                bx4 = $('#box4').text(), bx5 = $('#box5').text(), bx6 = $('#box6').text(),
+                bx7 = $('#box7').text(), bx8 = $('#box8').text(), bx9 = $('#box9').text();
+            if (bx5 == "") { // begin picking move, always prioritize center if open
+                e = "#box5";
+            } // section below is for setting up late game traps
+            else if (bx1 == bx5 && bx1 == "X" && bx9 == bx2 && bx9 == "O" && count == 4) {
+                e = "#box7";
+            }
+            else if (bx1 == bx5 && bx1 == "X" && bx9 == bx4 && bx9 == "O" && count == 4) {
+                e = "#box3";
+            }
+            else if (bx3 == bx5 && bx3 == "X" && bx7 == bx2 && bx7 == "O" && count == 4) {
+                e = "#box9";
+            }
+            else if (bx3 == bx5 && bx3 == "X" && bx7 == bx6 && bx7 == "O" && count == 4) {
+                e = "#box1";
+            }
+            else if (bx7 == bx5 && bx7 == "X" && bx3 == bx4 && bx3 == "O" && count == 4) {
+                e = "#box9";
+            }
+            else if (bx7 == bx5 && bx7 == "X" && bx3 == bx8 && bx3 == "O" && count == 4) {
+                e = "#box1";
+            }
+            else if (bx9 == bx5 && bx9 == "X" && bx1 == bx6 && bx1 == "O" && count == 4) {
+                e = "#box7";
+            }
+            else if (bx9 == bx5 && bx9 == "X" && bx1 == bx8 && bx1 == "O" && count == 4) {
+                e = "#box3";
+            }
+            // section below is for avoiding all player traps
+            else if (bx6 == bx8 && bx6 == "O" && count == 3) { e = "#box9"; }
+            else if (bx1 == bx6 && bx1 == "O" && bx3 == "") { e = "#box3"; }
+            else if (bx1 == bx8 && bx1 == "O" && bx7 == "") { e = "#box7"; }
+            else if (bx1 == bx9 && bx1 == "O" && bx2 == "") { e = "#box2"; }
+            else if (bx3 == bx7 && bx3 == "O" && bx2 == "") { e = "#box2"; }
+            else if (bx3 == bx8 && bx3 == "O" && bx9 == "") { e = "#box9"; }
+            else if (bx7 == bx6 && bx7 == "O" && bx9 == "") { e = "#box9"; }
+            else if (bx9 == bx2 && bx9 == "O" && bx3 == "") { e = "#box3"; }
+            else if (bx9 == bx4 && bx9 == "O" && bx7 == "") { e = "#box7"; }
+            // section below is for setting up early game traps
+            else if (bx1 == "O" && bx9 == "" && count != 3) { e = "#box9"; }
+            else if (bx2 == "O" && bx7 == "" && count != 3) { e = "#box7"; }
+            else if (bx3 == "O" && bx7 == "" && count != 3) { e = "#box7"; }
+            else if (bx4 == "O" && bx3 == "" && count != 3) { e = "#box3"; }
+            else if (bx7 == "O" && bx3 == "" && count != 3) { e = "#box3"; }
+            // section below is for prioritizing corners
+            else if (bx1 == "") { e = "#box1"; }
+            else if (bx3 == "") { e = "#box3"; }
+            else if (bx7 == "") { e = "#box7"; }
+            else if (bx9 == "") { e = "#box9"; }
             else { // failing all the above, this picks a random square
                 let RandArray = new Array();
                 for (i = 1; i <= 9; i++) { // run a loop that checks all boxes if empty

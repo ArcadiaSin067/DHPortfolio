@@ -110,6 +110,9 @@ function GoThere(e) { //function to decide what mode and who plays when
     else if (mSelect == 3 && xo == "X") {
         setTimeout(HardAI, 750);
     }
+    else if (mSelect == 4 && xo == "X") {
+        setTimeout(Legendary, 750);
+    }
     else {PlaceInBox(e);}
 }
 function PlaceInBox(e) { //function to place an X or O in a picked box
@@ -142,12 +145,12 @@ function CClear3() {
     $('#Fizz,#Buzz').val("");
     $('#FBRes').text("");
     $('#FBCode').hide();
-}
+};
 function CClear4() {
     $('#PTI').val("");
     $('#PalRes').text("");
     $('#PalCode').hide();
-}
+};
 function CClear5() {
     $('#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9').removeClass("Won");
     $('#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9').text("");
@@ -156,8 +159,9 @@ function CClear5() {
     $('#TTTCode2p').hide();
     $('#TTTCodeEz').hide();
     $('#TTTCodeHd').hide();
+    $('#TTTCodeLegend').hide();
     count = 0; Win = false;
-}
+};
 function SafeClear5() {
     if (mSelect != 1 && xo == "X" && (count == 9 || Win == true)) {
         CClear5();
@@ -169,7 +173,7 @@ function SafeClear5() {
     else if (mSelect == 1) {
         CClear5();
     }
-}
+};
 //special on click for the AI modes to prevent resetting during AI turns
 $('#TTT-btn-1').click(SafeClear5);
 
@@ -177,23 +181,34 @@ $('#TTT-btn-1').click(SafeClear5);
 $('#twoPlyr').click(function () {
     $('#twoPlyr').addClass('active');
     $('#EzAI').removeClass('active');
-    $('#HdAIr').removeClass('active');
+    $('#HdAI').removeClass('active');
+    $('#LegendAI').removeClass('active');
     $('#sMode').text("2 Player");
     mSelect = 1; CClear5();
 });
 $('#EzAI').click(function () {
     $('#twoPlyr').removeClass('active');
     $('#EzAI').addClass('active');
-    $('#HdAIr').removeClass('active');
-    $('#sMode').text("AI Easy");
+    $('#HdAI').removeClass('active');
+    $('#LegendAI').removeClass('active');
+    $('#sMode').text("Easy AI");
     mSelect = 2; xo = "O"; CClear5();
 });
 $('#HdAI').click(function () {
     $('#twoPlyr').removeClass('active');
     $('#EzAI').removeClass('active');
     $('#HdAIr').addClass('active');
-    $('#sMode').text("AI Hard");
+    $('#LegendAI').removeClass('active');
+    $('#sMode').text("Hard AI");
     mSelect = 3; xo = "O"; CClear5();
+});
+$('#LegendAI').click(function () {
+    $('#twoPlyr').removeClass('active');
+    $('#EzAI').removeClass('active');
+    $('#HdAI').removeClass('active');
+    $('#LegendAI').addClass('active');
+    $('#sMode').text("Legendary");
+    mSelect = 4; xo = "O"; CClear5();
 });
 
 //toggle the hidden codes for java exercises
@@ -213,6 +228,7 @@ $("#TTT-btn-2").click(function () {
     if (mSelect == 1) { $('#TTTCode2p').toggle() };
     if (mSelect == 2) { $('#TTTCodeEz').toggle() };
     if (mSelect == 3) { $('#TTTCodeHd').toggle() };
+    if (mSelect == 4) { $('#TTTCodeLegend').toggle() };
 });
 
 //on clicking away from the modals this calls the Clears above
@@ -223,8 +239,8 @@ $('#myModal4').on('hidden.bs.modal', function () { CClear4() });
 $('#myModal5').on('hidden.bs.modal', function () {
     $('#twoPlyr').addClass('active');
     $('#EzAI').removeClass('active');
-    $('#HdAIr').removeClass('active');
+    $('#HdAI').removeClass('active');
+    $('#LegendAI').removeClass('active');
     $('#sMode').text("Select Mode");
     mSelect = 1; CClear5();
-
 });
