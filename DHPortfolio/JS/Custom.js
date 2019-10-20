@@ -39,6 +39,7 @@ $('#BM-btn-1').click(function () {
     $('#result5').text(out5);
 });
 
+
 //function to find the factorial of a number
 function factorialize(num) {
     var result = num, out; //set variables
@@ -64,6 +65,7 @@ function factorialize(num) {
     $('#factRes').text(out);
 };
 
+
 //on clicking the Buzz It! button this will trigger the FizzBuzz code to run
 $('#FB-btn-1').click(FBClick);
 function FBClick() { // function called on click
@@ -81,6 +83,7 @@ function FizzBuzz(val1, val2) { //function to run the fizz-buzz
     return myArray.join(' - '); //compile the array and add a hyphen between each part 
 }
 
+
 //function to find a palindrome
 function PalInput() {
     var str = document.getElementById('PTI').value; //get user input
@@ -97,13 +100,14 @@ function PalInput() {
     $('#PalRes').text(result + out); //print the output
 }
 
+
 // start code section for Tic-Tac-Toe
-var xo = "O", Win = false, a, b, c, e, count = 0; // declare global variables
+var xo = "O", Win = false, count = 0, mSelect = 1, a, b, c, e; // declare global variables
 function GoThere(e) { //function to decide what mode and who plays when
-    if ($('#DiffSelect').val() == 2 && xo == "X") {
+    if (mSelect == 2 && xo == "X") {
         setTimeout(EasyAI, 750);
     }
-    else if ($('#DiffSelect').val() == 3 && xo == "X") {
+    else if (mSelect == 3 && xo == "X") {
         setTimeout(HardAI, 750);
     }
     else {PlaceInBox(e);}
@@ -115,30 +119,13 @@ function PlaceInBox(e) { //function to place an X or O in a picked box
             check4Win();
             xo = (xo == "O") ? xo = "X" : xo = "O";
             $('#whoTurn').text(`It is now ${xo}'s turn.`);
-            if ($('#DiffSelect').val() != 1 && xo == "X") {
+            if (mSelect != 1 && xo == "X") {
                 GoThere(e);
             }
         }
     }
 }
 
-// function to select the play mode
-function selectMe(value) {
-    value = parseInt(value, 10); // Convert to an integer
-    if (value === 1) { // select 2 Player mode
-        $('#DiffSelect').removeClass('rangeEasy', 'rangeHard').addClass('range2P');
-        $('#Mode').text('2 Player'); CClear5();
-        $('#SubMode').text('With Friends!');
-    } else if (value === 2) { // select AI Easy mode
-        $('#DiffSelect').removeClass('range2P', 'rangeHard').addClass('rangeEasy');
-        $('#Mode').text('vs AI-Easy.'); xo = "O"; CClear5();
-        $('#SubMode').text('The Fun One');
-    } else if (value === 3) { // select AI Hard mode
-        $('#DiffSelect').removeClass('rangeEasy', 'range2P').addClass('rangeHard');
-        $('#Mode').text('vs AI-Hard.'); xo = "O"; CClear5();
-        $('#SubMode').text('The Champion');
-    }
-}
 
 //this section has a clear for the fields, results, and hidden codes of the modals
 function CClear1() {
@@ -172,19 +159,42 @@ function CClear5() {
     count = 0; Win = false;
 }
 function SafeClear5() {
-    if ($('#DiffSelect').val() != 1 && xo == "X" && (count == 9 || Win == true)) {
+    if (mSelect != 1 && xo == "X" && (count == 9 || Win == true)) {
         CClear5();
-        setTimeout(GoThere, 750); // starts AI turn is game was draw and its X turn
+        setTimeout(GoThere, 750); // starts AI turn if game was draw and its X turn
     }
-    else if ($('#DiffSelect').val() != 1 && xo == "O") {
+    else if (mSelect != 1 && xo == "O") {
         CClear5();
     }
-    else if ($('#DiffSelect').val() == 1) {
+    else if (mSelect == 1) {
         CClear5();
     }
 }
-// special on click for the AI modes to prevent resetting during AI turns
+//special on click for the AI modes to prevent resetting during AI turns
 $('#TTT-btn-1').click(SafeClear5);
+
+//mode select on click
+$('#twoPlyr').click(function () {
+    $('#twoPlyr').addClass('active');
+    $('#EzAI').removeClass('active');
+    $('#HdAIr').removeClass('active');
+    $('#sMode').text("2 Player");
+    mSelect = 1; CClear5();
+});
+$('#EzAI').click(function () {
+    $('#twoPlyr').removeClass('active');
+    $('#EzAI').addClass('active');
+    $('#HdAIr').removeClass('active');
+    $('#sMode').text("AI Easy");
+    mSelect = 2; xo = "O"; CClear5();
+});
+$('#HdAI').click(function () {
+    $('#twoPlyr').removeClass('active');
+    $('#EzAI').removeClass('active');
+    $('#HdAIr').addClass('active');
+    $('#sMode').text("AI Hard");
+    mSelect = 3; xo = "O"; CClear5();
+});
 
 //toggle the hidden codes for java exercises
 $("#BM-btn-3").click(function () {
@@ -200,21 +210,9 @@ $("#Pa-btn-3").click(function () {
     $('#PalCode').toggle();
 });
 $("#TTT-btn-2").click(function () {
-    if ($('#DiffSelect').val() == 1){
-        $('#TTTCode2p').toggle();
-        $('#TTTCodeEz').hide();
-        $('#TTTCodeHd').hide();
-    }
-    if ($('#DiffSelect').val() == 2) {
-        $('#TTTCode2p').hide();
-        $('#TTTCodeEz').toggle();
-        $('#TTTCodeHd').hide();
-    }
-    if ($('#DiffSelect').val() == 3) {
-        $('#TTTCode2p').hide();
-        $('#TTTCodeEz').hide();
-        $('#TTTCodeHd').toggle();
-    }
+    if (mSelect == 1) { $('#TTTCode2p').toggle() };
+    if (mSelect == 2) { $('#TTTCodeEz').toggle() };
+    if (mSelect == 3) { $('#TTTCodeHd').toggle() };
 });
 
 //on clicking away from the modals this calls the Clears above
@@ -223,5 +221,10 @@ $('#myModal2').on('hidden.bs.modal', function () { CClear2() });
 $('#myModal3').on('hidden.bs.modal', function () { CClear3() });
 $('#myModal4').on('hidden.bs.modal', function () { CClear4() });
 $('#myModal5').on('hidden.bs.modal', function () {
-    $('#DiffSelect').val(1); selectMe($('#DiffSelect').val());
+    $('#twoPlyr').addClass('active');
+    $('#EzAI').removeClass('active');
+    $('#HdAIr').removeClass('active');
+    $('#sMode').text("Select Mode");
+    mSelect = 1; CClear5();
+
 });

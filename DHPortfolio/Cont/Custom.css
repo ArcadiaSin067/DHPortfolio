@@ -57,6 +57,17 @@ td {
     opacity: 1;
 }
 
+#twoPlyr:hover {
+    background-color:powderblue;
+}
+#EzAI:hover {
+    background-color:powderblue;
+}
+#HdAI:hover {
+    background-color:powderblue;
+}
+
+
 ::placeholder {
     color: darkgrey;
     opacity: .67; /* Firefox */

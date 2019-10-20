@@ -445,13 +445,14 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="row" style="font-size:larger">
-                            <span>Grab the slider to pick Modes. AI is always X's.</span>
+                            <span>Select Modes for different opponents. The AIs are always X's. The Reset button
+                            will clear the board.</span>
                         </div>
-                        <div class="row" style="font-size:larger">
+                        <div class="row" style="font-size:larger; padding-top:7px">
                             <span id="TTTresult">Play until someone lines up 3 X's or O's!</span>
                         </div>
-                        <div class="row" style="font-size:larger">
-                            <span id="whoTurn">It is now O's turn.</span>
+                        <div class="row" style="font-size:larger; padding-top:6px">
+                            <span id="whoTurn" style="color:black">It is now O's turn.</span>
                         </div>
                         <hr style="margin-bottom:1px" />
                         <div class="row">
@@ -473,22 +474,21 @@
                                 </tr>
                             </table>
                         </div>
-                        <hr style="margin-top:1px" />
-                        <div class="row">
-                            <div class="col-md-4 d-flex justify-content-end">
-                                <span id="Mode" style="max-height:22px">2 Player</span>
-                            </div>
-                            <div class="col-md-4 range-field" style=" width:100px">
-                                <input type="range" id="DiffSelect" name="points" onchange="selectMe(this.value);" min="1" class="rangeAll" max="3" value="1">
-                            </div>
-                            <div class="col-md-4">
-                                <span id="SubMode" style="max-height:22px">With Friends</span>
-                            </div>
-                        </div>
+                        <hr style="margin-top:1px; margin-bottom:1px" />
                     </div>
                     <div class="row justify-content-center" style="padding-top: 15px;">
                         <div class="btn-group btn-group-sm">
-                            <button type="button" class="btn btn-success" id="TTT-btn-1">Reset</button>
+                            <div class="dropdown dropleft btn-group btn-group-sm">
+                                <button type="button" class="btn btn-primary dropdown-toggle"
+                                        data-toggle="dropdown" id="sMode">Select Mode</button>
+                                <div class="dropdown-menu">
+                                    <h5 class="dropdown-header" style="font-family: 'Times New Roman'">Select Mode</h5>
+                                    <button class="dropdown-item active" id="twoPlyr">2 Player</button>
+                                    <button class="dropdown-item" id="EzAI">Easy AI</button>
+                                    <button class="dropdown-item" id="HdAI">Hard AI</button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-success" id="TTT-btn-1" style="padding:0 15px 0 15px">Reset</button>
                             <button type="button" class="btn btn-warning" id="TTT-btn-2">Toggle Code</button>
                             <button type="button" class="btn btn-danger" id="TTT-btn-3" data-dismiss="modal">Close</button>
                         </div>

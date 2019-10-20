@@ -289,11 +289,11 @@ function HardAI() {
             else if (bx9 == bx2 && bx9 == "O" && bx3 == "") {e = "#box3";}
             else if (bx9 == bx4 && bx9 == "O" && bx7 == "") {e = "#box7";}
             // section below is for setting up early game traps
-            else if (bx1 == "O" && bx9 == "") {e = "#box9";}
-            else if (bx2 == "O" && bx7 == "") {e = "#box7";}
-            else if (bx3 == "O" && bx7 == "") {e = "#box7";}
-            else if (bx4 == "O" && bx3 == "") {e = "#box3";}
-            else if (bx7 == "O" && bx3 == "") {e = "#box3";}
+            else if (bx1 == "O" && bx9 == "" && count != 3) {e = "#box9";}
+            else if (bx2 == "O" && bx7 == "" && count != 3) {e = "#box7";}
+            else if (bx3 == "O" && bx7 == "" && count != 3) {e = "#box7";}
+            else if (bx4 == "O" && bx3 == "" && count != 3) {e = "#box3";}
+            else if (bx7 == "O" && bx3 == "" && count != 3) {e = "#box3";}
             // section below is for prioritizing corners
             else if (bx1 == "") {e = "#box1";}
             else if (bx3 == "") {e = "#box3";}
