@@ -407,6 +407,7 @@
         </div>
     </div>
     <!-- End section footer -->
+
     <!-- The Modal6 -->
     <div class="modal fade" id="myModal6">
         <div class="modal-dialog modal-dialog-centered">
@@ -497,13 +498,13 @@
                         <div class="col">
                             <pre class="brush: js">
 
-// start code section for Tic-Tac-Toe 2 Player
-var xo = "O", Win = false, a, b, c, e, count = 0; // declare global variables
+// start code section for Tic-Tac-Toe
+var xo = "O", Win = false, count = 0, mSelect = 1, a, b, c, e; // declare global variables
 function GoThere(e) { //function to decide what mode and who plays when
-    if ($('#DiffSelect').val() == 2 && xo == "X") {
+    if (mSelect == 2 && xo == "X") {
         setTimeout(EasyAI, 750);
     }
-    else if ($('#DiffSelect').val() == 3 && xo == "X") {
+    else if (mSelect == 3 && xo == "X") {
         setTimeout(HardAI, 750);
     }
     else {PlaceInBox(e);}
@@ -515,7 +516,7 @@ function PlaceInBox(e) { //function to place an X or O in a picked box
             check4Win();
             xo = (xo == "O") ? xo = "X" : xo = "O";
             $('#whoTurn').text(`It is now ${xo}s turn.`);
-            if ($('#DiffSelect').val() != 1 && xo == "X") {
+            if (mSelect != 1 && xo == "X") {
                 GoThere(e);
             }
         }
@@ -568,13 +569,13 @@ function check4Win() { // set all boxes to a variable
                         <div class="col">
                             <pre class="brush: js">
 
-// start code section for Tic-Tac-Toe Easy AI
-var xo = "O", Win = false, a, b, c, e, count = 0; // declare global variables
+// start code section for Tic-Tac-Toe
+var xo = "O", Win = false, count = 0, mSelect = 1, a, b, c, e; // declare global variables
 function GoThere(e) { //function to decide what mode and who plays when
-    if ($('#DiffSelect').val() == 2 && xo == "X") {
+    if (mSelect == 2 && xo == "X") {
         setTimeout(EasyAI, 750);
     }
-    else if ($('#DiffSelect').val() == 3 && xo == "X") {
+    else if (mSelect == 3 && xo == "X") {
         setTimeout(HardAI, 750);
     }
     else {PlaceInBox(e);}
@@ -586,7 +587,7 @@ function PlaceInBox(e) { //function to place an X or O in a picked box
             check4Win();
             xo = (xo == "O") ? xo = "X" : xo = "O";
             $('#whoTurn').text(`It is now ${xo}s turn.`);
-            if ($('#DiffSelect').val() != 1 && xo == "X") {
+            if (mSelect != 1 && xo == "X") {
                 GoThere(e);
             }
         }
@@ -665,11 +666,11 @@ function HardAI() {
             else if (bx9 == bx2 && bx9 == "O" && bx3 == "") {e = "#box3";}
             else if (bx9 == bx4 && bx9 == "O" && bx7 == "") {e = "#box7";}
             // section below is for setting up early game traps
-            else if (bx1 == "O" && bx9 == "") {e = "#box9";}
-            else if (bx2 == "O" && bx7 == "") {e = "#box7";}
-            else if (bx3 == "O" && bx7 == "") {e = "#box7";}
-            else if (bx4 == "O" && bx3 == "") {e = "#box3";}
-            else if (bx7 == "O" && bx3 == "") {e = "#box3";}
+            else if (bx1 == "O" && bx9 == "" && count != 3) {e = "#box9";}
+            else if (bx2 == "O" && bx7 == "" && count != 3) {e = "#box7";}
+            else if (bx3 == "O" && bx7 == "" && count != 3) {e = "#box7";}
+            else if (bx4 == "O" && bx3 == "" && count != 3) {e = "#box3";}
+            else if (bx7 == "O" && bx3 == "" && count != 3) {e = "#box3";}
             // section below is for prioritizing corners
             else if (bx1 == "") {e = "#box1";}
             else if (bx3 == "") {e = "#box3";}
