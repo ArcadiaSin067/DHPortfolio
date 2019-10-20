@@ -67,6 +67,11 @@ td {
     background-color:powderblue;
 }
 
+.syntaxhighlighter {
+    overflow-y: auto !important;
+    overflow-x: auto !important;
+    max-height: 500px;
+}
 
 ::placeholder {
     color: darkgrey;
