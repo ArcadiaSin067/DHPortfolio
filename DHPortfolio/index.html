@@ -438,17 +438,20 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header" style="background-image:url(Img/banner.jpg); background-size:contain">
-                    <h3 class="modal-title" style="color:white; font-family: 'Times New Roman'">Tic-Tac-Toe! - AI coming soon</h3>
+                    <h3 class="modal-title" style="color:white; font-family: 'Times New Roman'">Tic-Tac-Toe - with AI!</h3>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div class="container">
                         <div class="row" style="font-size:larger">
+                            <span>Grab the slider to pick Modes. AI is always X's.</span>
+                        </div>
+                        <div class="row" style="font-size:larger">
                             <span id="TTTresult">Play until someone lines up 3 X's or O's!</span>
                         </div>
                         <div class="row" style="font-size:larger">
-                            <span id="whoTurn">It is now O's turn</span>
+                            <span id="whoTurn">It is now O's turn.</span>
                         </div>
                         <hr style="margin-bottom:1px" />
                         <div class="row">
@@ -485,33 +488,45 @@
                     </div>
                     <div class="row justify-content-center" style="padding-top: 15px;">
                         <div class="btn-group btn-group-sm">
-                            <button onclick="CClear5()" type="button" class="btn btn-success" id="TTT-btn-1">Reset</button>
+                            <button type="button" class="btn btn-success" id="TTT-btn-1">Reset</button>
                             <button type="button" class="btn btn-warning" id="TTT-btn-2">Toggle Code</button>
                             <button type="button" class="btn btn-danger" id="TTT-btn-3" data-dismiss="modal">Close</button>
                         </div>
                     </div>
-                    <div class="row" id="TTTCode">
+                    <div class="row" id="TTTCode2p">
                         <div class="col">
                             <pre class="brush: js">
-//declare global variables
-var xo = "X", Win = false, a, b, c, count = 0;
 
-function GoThere(e) { //function on click to place an X or O
+// start code section for Tic-Tac-Toe 2 Player
+var xo = "O", Win = false, a, b, c, e, count = 0; // declare global variables
+function GoThere(e) { //function to decide what mode and who plays when
+    if ($('#DiffSelect').val() == 2 && xo == "X") {
+        setTimeout(EasyAI, 750);
+    }
+    else if ($('#DiffSelect').val() == 3 && xo == "X") {
+        setTimeout(HardAI, 750);
+    }
+    else {PlaceInBox(e);}
+}
+function PlaceInBox(e) { //function to place an X or O in a picked box
     if ($(e).text() == "") {
-        if (!Win) { //if no one has won, lets play on!
-            $('#whoTurn').text(`It is now ${xo}s turn`); //list what turn it is
-            Turn = (xo == "O") ? xo = "X" : xo = "O"; //swap the turns
-            $(e).text(Turn); count++;
+        if (!Win) {
+            $(e).text(xo); count++;
             check4Win();
+            xo = (xo == "O") ? xo = "X" : xo = "O";
+            $('#whoTurn').text(`It is now ${xo}s turn.`);
+            if ($('#DiffSelect').val() != 1 && xo == "X") {
+                GoThere(e);
+            }
         }
     }
 }
-
-function check4Win() { //begin win check by setting all boxes to a variable
+// start checking if there is a win or draw on the board
+function check4Win() { // set all boxes to a variable
     var bx1 = $('#box1').text(), bx2 = $('#box2').text(), bx3 = $('#box3').text(),
         bx4 = $('#box4').text(), bx5 = $('#box5').text(), bx6 = $('#box6').text(),
         bx7 = $('#box7').text(), bx8 = $('#box8').text(), bx9 = $('#box9').text();
-    if (!Win) { //look for all matching instances of 3 in a row
+    if (!Win && count > 4) { //look for all matching instances of 3 in a row
         if (bx1 == bx2 && bx1 == bx3 && bx1 != "") {
             Win = true; a = 1, b = 2, c = 3;
         }
@@ -537,14 +552,143 @@ function check4Win() { //begin win check by setting all boxes to a variable
             Win = true; a = 3, b = 5, c = 7;
         }
         else if (!Win && count == 9) { //this checks if the game ends in a draw
-            $('#TTTresult').text('This game is a Draw...');
-            $('#whoTurn').text("Reset and try again?");
+            $('#TTTresult').text('This game is a Draw. Reset and try again?');
         }
         if (Win) { //output the winner and shift the boxes to show it
-            $('#whoTurn').text((xo) + "'s" + " Win!"); //Woo-Hoo!
-            $('#TTTresult').text("Congratulations!");
+            $('#TTTresult').text("Congratulations! " + (xo) + "s" + " Win!"); //Woo-hoo!
             return $(`#box${a}, #box${b}, #box${c}`).addClass("Won");
         }
+    }
+}
+
+                        </pre>
+                        </div>
+                    </div>
+                    <div class="row" id="TTTCodeEz">
+                        <div class="col">
+                            <pre class="brush: js">
+
+// start code section for Tic-Tac-Toe Easy AI
+var xo = "O", Win = false, a, b, c, e, count = 0; // declare global variables
+function GoThere(e) { //function to decide what mode and who plays when
+    if ($('#DiffSelect').val() == 2 && xo == "X") {
+        setTimeout(EasyAI, 750);
+    }
+    else if ($('#DiffSelect').val() == 3 && xo == "X") {
+        setTimeout(HardAI, 750);
+    }
+    else {PlaceInBox(e);}
+}
+function PlaceInBox(e) { //function to place an X or O in a picked box
+    if ($(e).text() == "") {
+        if (!Win) {
+            $(e).text(xo); count++;
+            check4Win();
+            xo = (xo == "O") ? xo = "X" : xo = "O";
+            $('#whoTurn').text(`It is now ${xo}s turn.`);
+            if ($('#DiffSelect').val() != 1 && xo == "X") {
+                GoThere(e);
+            }
+        }
+    }
+}
+// script for easy mode AI
+function EasyAI() {
+    if (xo == "X") { // check its AIs turn
+        winS = 0; BlockScenario(); // check for a blocking move
+        if (blkS == 0 && count < 9) { // if no block can be made and board is not full
+            let RandArray = new Array();
+            for (i = 1; i <= 9; i++) { // run a loop that checks all boxes if empty
+                var str = '#box' + i;
+                if ($(str).text() == "") { // a box is excluded if it is full
+                    RandArray.push(str); // push the non-excluded boxes to new array
+                }
+            }
+            // this takes the new array and picks a random element in it
+            var Rndum = RandArray[Math.floor(Math.random() * RandArray.length)];
+            e = Rndum; // that random element is set to the picked box to play
+        }
+    }
+    PlaceInBox(e); // output the chosen box
+}
+
+                        </pre>
+                        </div>
+                    </div>
+                    <div class="row" id="TTTCodeHd">
+                        <div class="col">
+                            <pre class="brush: js">
+// start code section for Tic-Tac-Toe Hard AI
+// script for the hard mode AI
+function HardAI() {
+    if (xo == "X") { // check its AIs turn
+        WinScenario(); // check for a winning move
+        BlockScenario(); // check for a blocking move
+        if (winS == 0 && blkS == 0 && count < 9) { //if no win or block, set variables
+        var bx1 = $('#box1').text(), bx2 = $('#box2').text(), bx3 = $('#box3').text(),
+            bx4 = $('#box4').text(), bx5 = $('#box5').text(), bx6 = $('#box6').text(),
+            bx7 = $('#box7').text(), bx8 = $('#box8').text(), bx9 = $('#box9').text();
+            if (bx5 == "") { // begin picking move, always prioritize center if open
+                e = "#box5";
+            } // section below is for setting up late game traps
+            else if (bx1 == bx5 && bx1 == "X" && bx9 == bx2 && bx9 == "O" && count == 4) {
+                e = "#box7";
+            }
+            else if (bx1 == bx5 && bx1 == "X" && bx9 == bx4 && bx9 == "O" && count == 4) {
+                e = "#box3";
+            }
+            else if (bx3 == bx5 && bx3 == "X" && bx7 == bx2 && bx7 == "O" && count == 4) {
+                e = "#box9";
+            }
+            else if (bx3 == bx5 && bx3 == "X" && bx7 == bx6 && bx7 == "O" && count == 4) {
+                e = "#box1";
+            }
+            else if (bx7 == bx5 && bx7 == "X" && bx3 == bx4 && bx3 == "O" && count == 4) {
+                e = "#box9";
+            }
+            else if (bx7 == bx5 && bx7 == "X" && bx3 == bx8 && bx3 == "O" && count == 4) {
+                e = "#box1";
+            }
+            else if (bx9 == bx5 && bx9 == "X" && bx1 == bx6 && bx1 == "O" && count == 4) {
+                e = "#box7";
+            }
+            else if (bx9 == bx5 && bx9 == "X" && bx1 == bx8 && bx1 == "O" && count == 4) {
+                e = "#box3";
+            }
+            // section below is for avoiding player traps
+            else if (bx1 == bx6 && bx1 == "O" && bx3 == "") {e = "#box3";}
+            else if (bx1 == bx8 && bx1 == "O" && bx7 == "") {e = "#box7";}
+            else if (bx1 == bx9 && bx1 == "O" && bx2 == "") {e = "#box2";}
+            else if (bx3 == bx7 && bx3 == "O" && bx2 == "") {e = "#box2";}
+            else if (bx3 == bx8 && bx3 == "O" && bx9 == "") {e = "#box9";}
+            else if (bx7 == bx6 && bx7 == "O" && bx9 == "") {e = "#box9";}
+            else if (bx9 == bx2 && bx9 == "O" && bx3 == "") {e = "#box3";}
+            else if (bx9 == bx4 && bx9 == "O" && bx7 == "") {e = "#box7";}
+            // section below is for setting up early game traps
+            else if (bx1 == "O" && bx9 == "") {e = "#box9";}
+            else if (bx2 == "O" && bx7 == "") {e = "#box7";}
+            else if (bx3 == "O" && bx7 == "") {e = "#box7";}
+            else if (bx4 == "O" && bx3 == "") {e = "#box3";}
+            else if (bx7 == "O" && bx3 == "") {e = "#box3";}
+            // section below is for prioritizing corners
+            else if (bx1 == "") {e = "#box1";}
+            else if (bx3 == "") {e = "#box3";}
+            else if (bx7 == "") {e = "#box7";}
+            else if (bx9 == "") {e = "#box9";}
+            else { // failing all the above, this picks a random square
+                let RandArray = new Array();
+                for (i = 1; i <= 9; i++) { // run a loop that checks all boxes if empty
+                    var str = '#box' + i;
+                    if ($(str).text() == "") { // a box is excluded if it is full
+                        RandArray.push(str); // push the non-excluded boxes to new array
+                    }
+                }
+                // this takes the new array and picks a random element in it
+                var Rndum = RandArray[Math.floor(Math.random() * RandArray.length)];
+                e = Rndum; // that random element is set to the picked box to play
+            }
+        }
+        PlaceInBox(e); // output the chosen box
     }
 }
 
@@ -892,13 +1036,17 @@ $('#BM-btn-1').click(function () {
 
     <!-- Custom Scripts -->
     <script src="JS/Custom.js"></script>
+    <script src="JS/AIPackages.js"></script>
 
     <!-- Hide the code toggles on startup -->
     <script>$("#mathCode").hide();</script>
     <script>$("#factCode").hide();</script>
     <script>$("#FBCode").hide();</script>
     <script>$("#PalCode").hide();</script>
-    <script>$("#TTTCode").hide();</script>
+    <script>$("#TTTCode2p").hide();</script>
+    <script>$("#TTTCodeEz").hide();</script>
+    <script>$("#TTTCodeHd").hide();</script>
+
 
     <!-- Highlight sections of code in java exercises -->
     <script>SyntaxHighlighter.all()</script>

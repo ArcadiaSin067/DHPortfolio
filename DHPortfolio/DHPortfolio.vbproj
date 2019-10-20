@@ -126,6 +126,7 @@
     <Content Include="Img\portfolio\5.jpg" />
     <Content Include="Img\portfolio\6.jpg" />
     <Content Include="index.html" />
+    <Content Include="JS\AIPackages.js" />
     <Content Include="JS\bootstrap.bundle.min.js" />
     <Content Include="JS\contactform.js" />
     <Content Include="JS\Custom.js" />

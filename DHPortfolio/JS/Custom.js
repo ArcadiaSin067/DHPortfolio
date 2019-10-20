@@ -97,76 +97,48 @@ function PalInput() {
     $('#PalRes').text(result + out); //print the output
 }
 
-//declare global variables
-var xo = "X", Win = false, a, b, c, count = 0;
-
-function GoThere(e) { //function on click to place an X or O
+// start code section for Tic-Tac-Toe
+var xo = "O", Win = false, a, b, c, e, count = 0; // declare global variables
+function GoThere(e) { //function to decide what mode and who plays when
+    if ($('#DiffSelect').val() == 2 && xo == "X") {
+        setTimeout(EasyAI, 750);
+    }
+    else if ($('#DiffSelect').val() == 3 && xo == "X") {
+        setTimeout(HardAI, 750);
+    }
+    else {PlaceInBox(e);}
+}
+function PlaceInBox(e) { //function to place an X or O in a picked box
     if ($(e).text() == "") {
         if (!Win) {
-            $('#whoTurn').text(`It is now ${xo}'s turn`); //list what turn it is
-            Turn = (xo == "O") ? xo = "X" : xo = "O";
-            $(e).text(Turn); count++;
+            $(e).text(xo); count++;
             check4Win();
+            xo = (xo == "O") ? xo = "X" : xo = "O";
+            $('#whoTurn').text(`It is now ${xo}'s turn.`);
+            if ($('#DiffSelect').val() != 1 && xo == "X") {
+                GoThere(e);
+            }
         }
-    }
-}
-function check4Win() { //begin win check by setting all boxes to a variable
-    var bx1 = $('#box1').text(), bx2 = $('#box2').text(), bx3 = $('#box3').text(),
-        bx4 = $('#box4').text(), bx5 = $('#box5').text(), bx6 = $('#box6').text(),
-        bx7 = $('#box7').text(), bx8 = $('#box8').text(), bx9 = $('#box9').text();
-    if (!Win) { //look for all matching instances of 3 in a row
-        if (bx1 == bx2 && bx1 == bx3 && bx1 != "") {
-            Win = true; a = 1, b = 2, c = 3;
-        }
-        else if (bx4 == bx5 && bx4 == bx6 && bx4 != "") {
-            Win = true; a = 4, b = 5, c = 6;
-        }
-        else if (bx7 == bx8 && bx7 == bx9 && bx7 != "") {
-            Win = true; a = 7, b = 8, c = 9;
-        }
-        else if (bx1 == bx4 && bx1 == bx7 && bx1 != "") {
-            Win = true; a = 1, b = 4, c = 7;
-        }
-        else if (bx2 == bx5 && bx2 == bx8 && bx2 != "") {
-            Win = true; a = 2, b = 5, c = 8;
-        }
-        else if (bx3 == bx6 && bx3 == bx9 && bx3 != "") {
-            Win = true; a = 3, b = 6, c = 9;
-        }
-        else if (bx1 == bx5 && bx1 == bx9 && bx1 != "") {
-            Win = true; a = 1, b = 5, c = 9;
-        }
-        else if (bx3 == bx5 && bx3 == bx7 && bx3 != "") {
-            Win = true; a = 3, b = 5, c = 7;
-        }
-        else if (!Win && count == 9) { //this checks if the game ends in a draw
-            $('#TTTresult').text('This game is a Draw...');
-            $('#whoTurn').text("Reset and try again?");
-        }
-        if (Win) { //output the winner and shift the boxes to show it
-            $('#whoTurn').text((xo) + "'s" + " Win!"); //Woo-Hoo!
-            $('#TTTresult').text("Congratulations!");
-            return $(`#box${a}, #box${b}, #box${c}`).addClass("Won");
-        }
-    }
-}
-function selectMe(value) {
-    value = parseInt(value, 10); // Convert to an integer
-    if (value === 1) {
-        $('#DiffSelect').removeClass('rangeEasy', 'rangeHard').addClass('range2P');
-        $('#Mode').text('2 Player'); CClear5();
-        $('#SubMode').text('With Friends');
-    } else if (value === 2) {
-        $('#DiffSelect').removeClass('range2P', 'rangeHard').addClass('rangeEasy');
-        $('#Mode').text('AI Easy'); CClear5();
-        $('#SubMode').text('The Fun One');
-    } else if (value === 3) {
-        $('#DiffSelect').removeClass('rangeEasy', 'range2P').addClass('rangeHard');
-        $('#Mode').text('AI Hard'); CClear5();
-        $('#SubMode').text('Can You Win?');
     }
 }
 
+// function to select the play mode
+function selectMe(value) {
+    value = parseInt(value, 10); // Convert to an integer
+    if (value === 1) { // select 2 Player mode
+        $('#DiffSelect').removeClass('rangeEasy', 'rangeHard').addClass('range2P');
+        $('#Mode').text('2 Player'); CClear5();
+        $('#SubMode').text('With Friends!');
+    } else if (value === 2) { // select AI Easy mode
+        $('#DiffSelect').removeClass('range2P', 'rangeHard').addClass('rangeEasy');
+        $('#Mode').text('vs AI-Easy.'); xo = "O"; CClear5();
+        $('#SubMode').text('The Fun One');
+    } else if (value === 3) { // select AI Hard mode
+        $('#DiffSelect').removeClass('rangeEasy', 'range2P').addClass('rangeHard');
+        $('#Mode').text('vs AI-Hard.'); xo = "O"; CClear5();
+        $('#SubMode').text('The Champion');
+    }
+}
 
 //this section has a clear for the fields, results, and hidden codes of the modals
 function CClear1() {
@@ -193,10 +165,26 @@ function CClear5() {
     $('#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9').removeClass("Won");
     $('#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9').text("");
     $('#TTTresult').text("Play until someone lines up 3 X's or O's!");
-    $('#whoTurn').text("It is now O's turn");
-    $('#TTTCode').hide(); xo = "X";
-    count = 0; Win = false; 
+    $('#whoTurn').text(`It is now ${xo}'s turn.`);
+    $('#TTTCode2p').hide();
+    $('#TTTCodeEz').hide();
+    $('#TTTCodeHd').hide();
+    count = 0; Win = false;
 }
+function SafeClear5() {
+    if ($('#DiffSelect').val() != 1 && xo == "X" && (count == 9 || Win == true)) {
+        CClear5();
+        setTimeout(GoThere, 750); // starts AI turn is game was draw and its X turn
+    }
+    else if ($('#DiffSelect').val() != 1 && xo == "O") {
+        CClear5();
+    }
+    else if ($('#DiffSelect').val() == 1) {
+        CClear5();
+    }
+}
+// special on click for the AI modes to prevent resetting during AI turns
+$('#TTT-btn-1').click(SafeClear5);
 
 //toggle the hidden codes for java exercises
 $("#BM-btn-3").click(function () {
@@ -212,7 +200,21 @@ $("#Pa-btn-3").click(function () {
     $('#PalCode').toggle();
 });
 $("#TTT-btn-2").click(function () {
-    $('#TTTCode').toggle();
+    if ($('#DiffSelect').val() == 1){
+        $('#TTTCode2p').toggle();
+        $('#TTTCodeEz').hide();
+        $('#TTTCodeHd').hide();
+    }
+    if ($('#DiffSelect').val() == 2) {
+        $('#TTTCode2p').hide();
+        $('#TTTCodeEz').toggle();
+        $('#TTTCodeHd').hide();
+    }
+    if ($('#DiffSelect').val() == 3) {
+        $('#TTTCode2p').hide();
+        $('#TTTCodeEz').hide();
+        $('#TTTCodeHd').toggle();
+    }
 });
 
 //on clicking away from the modals this calls the Clears above
@@ -221,9 +223,5 @@ $('#myModal2').on('hidden.bs.modal', function () { CClear2() });
 $('#myModal3').on('hidden.bs.modal', function () { CClear3() });
 $('#myModal4').on('hidden.bs.modal', function () { CClear4() });
 $('#myModal5').on('hidden.bs.modal', function () {
-    CClear5(); $('#DiffSelect').val(1); selectMe($('#DiffSelect').val());
+    $('#DiffSelect').val(1); selectMe($('#DiffSelect').val());
 });
-
-//$('#myModal5').on('hidden.bs.modal', function () { $('#DiffSelect').val(1) });
-//$('#myModal5').on('hidden.bs.modal', function () { selectMe($('#DiffSelect').val()); });
-
