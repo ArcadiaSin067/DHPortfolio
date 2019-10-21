@@ -66,6 +66,9 @@ td {
 #HdAI:hover {
     background-color:powderblue;
 }
+#LegendAI:hover {
+    background-color: powderblue;
+}
 
 .syntaxhighlighter {
     overflow-y: auto !important;
