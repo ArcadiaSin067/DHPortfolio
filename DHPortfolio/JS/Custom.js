@@ -89,7 +89,16 @@ function PalInput() {
     var str = document.getElementById('PTI').value; //get user input
     var re = /[\W_]/g; //use a RegExp to remove all non-alphanumeric characters 
     var lowRegStr = str.toLowerCase().replace(re, ''); //convert the whole string to lower case and apply the RegExp
-    var reverseStr = lowRegStr.split('').reverse().join(''); //convert the above to a string, reverse it, and recombine to a new string
+    //var reverseStr = lowRegStr.split('').reverse().join(''); //convert the above to a string, reverse it, and recombine to a new string
+
+    //or I can use a for loop to reverse the string
+    let myArray = new Array;
+    let reverseStr = new String;
+    myArray = lowRegStr;
+    for (i = 0; i < lowRegStr.length; i++) {
+        reverseStr = myArray[i] + reverseStr;
+    }
+
     if (reverseStr === lowRegStr) { //if the condensed string is = to the reversed string use the first result, otherwise use the second result
         var out = " Which makes a palindrome!";
     }
