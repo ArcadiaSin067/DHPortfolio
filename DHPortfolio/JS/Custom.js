@@ -206,7 +206,7 @@ $('#EzAI').click(function () {
 $('#HdAI').click(function () {
     $('#twoPlyr').removeClass('active');
     $('#EzAI').removeClass('active');
-    $('#HdAIr').addClass('active');
+    $('#HdAI').addClass('active');
     $('#LegendAI').removeClass('active');
     $('#sMode').text("Hard AI");
     mSelect = 3; xo = "O"; CClear5();
