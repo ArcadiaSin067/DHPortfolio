@@ -114,6 +114,7 @@
     <Content Include="Img\blog-post-1.jpg" />
     <Content Include="Img\blog-post-2.jpg" />
     <Content Include="Img\blog-post-3.jpg" />
+    <Content Include="Img\BugTracker.png" />
     <Content Include="Img\favicon.png" />
     <Content Include="Img\logo.png" />
     <Content Include="Img\home-bg.jpg" />
