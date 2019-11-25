@@ -341,7 +341,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <form action="" method="post" role="form" class="contactForm">
+                        <form class="contactForm"><!--action="" method="post" role="form"--> 
                             <div class="row">
 
                                 <div id="sendmessage">Your message has been sent. Thank you!</div>
@@ -376,7 +376,7 @@
                                 </div>
 
                                 <div class="col-lg-12">
-                                    <input type="submit" id="btnSubmit" class="btn btn-default btn-send" value="Send message">
+                                    <input onclick="SendMsg()" id="btnSubmit" class="btn btn-default btn-send" value="Send message">
                                 </div>
 
                             </div>
@@ -1156,11 +1156,13 @@ $('#BM-btn-1').click(function () {
     <script src="JS/isotope.pkgd.min.js"></script>
 
     <!-- Contact Form JavaScript File -->
-    <script src="JS/contactform.js"></script>
-    <!--<script src="//smtpjs.com/v3/smtp.js"></script>-->
+    <!--<script src="JS/contactform.js"></script>-->
 
     <!-- Template Main Javascript File -->
     <script src="JS/main.js"></script>
+
+    <!-- SMTPJS -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 
     <!-- SyntaxHighlighter -->
     <script src="Scripts/SyntaxHighlighter/scripts/shCore.js"></script>

@@ -256,14 +256,14 @@ $('#myModal5').on('hidden.bs.modal', function () {
 
 
 //smptJS area
-//$('#btnSubmit').click(function () {
-//    Email.send({
-//        SecureToken: "37e5b069-22f4-4029-a2f5-549cc59fbdaf",
-//        To: "d.hebbard32987@gmail.com",
-//        From: $("#email").val(),
-//        Subject: $('#subject').val(),
-//        Body: $("#message").val()
-//    }).then(
-//        message => alert("Your message was sent!")
-//    );
-//});
+function SendMsg() {
+    Email.send({
+        SecureToken: "0f511131-604d-4179-8c40-4c7503776390",
+        To: "d.hebbard32987@gmail.com",
+        From: $("#email").val(),
+        Subject: $('#subject').val(),
+        Body: $('#name').val() + " sent you this message: " + $("#message").val()
+    }).then(
+        message => alert("Your message was sent!")
+    );
+};
